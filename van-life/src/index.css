@@ -183,6 +183,8 @@ button:focus-visible {
 /*** ABOUT PAGE ***/
 .van-image {
   max-width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
 
 .about-page-content {
@@ -227,5 +229,7 @@ button:focus-visible {
   text-align: center;
   padding: 1rem;
   font-size: 0.875rem;
-  margin-top: auto;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
