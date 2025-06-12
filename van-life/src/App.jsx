@@ -14,7 +14,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route pat="/about" element={<About />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   );
