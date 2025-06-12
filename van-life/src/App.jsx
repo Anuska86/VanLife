@@ -23,6 +23,12 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/vans" element={<Vans />} />
       </Routes>
+      <footer className="footer">
+        {" "}
+        <p>
+          &copy; {new Date().getFullYear()} AnuskaVanLife. All rights reserved.
+        </p>
+      </footer>
     </BrowserRouter>
   );
 }
