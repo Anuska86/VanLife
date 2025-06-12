@@ -20,22 +20,14 @@ nav {
   justify-content: flex-end;
 }
 
-nav > a {
-  text-decoration: none;
-  margin: 8px;
-}
-nav > a {
-  text-decoration: none;
-  margin: 8px;
-  float: right;
-}
-
 header {
   background-color: #7f8caa;
   height: 110px;
   display: flex;
   align-items: center;
   padding-block: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
 
 header .site-logo {
@@ -48,9 +40,9 @@ header .site-logo {
 
 header a {
   text-decoration: none;
-  color: #4d4d4d;
+  color: #383838;
   font-weight: 600;
-  padding: 5px 20px;
+  padding: 8px;
 }
 
 header a:hover {
@@ -149,31 +141,35 @@ button:focus-visible {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  min-height: 350px;
+  height: calc(100vh - 110px);
   color: white;
   padding: 45px 23px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
 }
 
 .home-container h1 {
   font-weight: 700;
   font-size: 2.25rem;
   line-height: 42px;
+  color: rgb(184, 179, 179);
 }
 
 .home-container p {
   line-height: 24px;
+  color: rgb(184, 179, 179);
 }
 
 .home-container a {
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  background-color: #ff8c38;
+  background-color: #c96d2c;
   border: none;
   width: 100%;
   margin-top: 27px;
   padding-block: 0.75rem;
-  color: white;
+  color: rgb(184, 179, 179);
   font-weight: 700;
   border-radius: 5px;
   cursor: pointer;
@@ -185,7 +181,7 @@ button:focus-visible {
 }
 
 /*** ABOUT PAGE ***/
-.about-hero-image {
+.van-image {
   max-width: 100%;
 }
 
