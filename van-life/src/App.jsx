@@ -1,8 +1,8 @@
 import React from "react";
 import "./index.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Home from "./components/Home";
-import About from "./components/About";
+import Home from "./components/pages/Home";
+import About from "./components/pages/About";
 
 export default function App() {
   return (
