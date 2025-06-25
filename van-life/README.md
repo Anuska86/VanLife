@@ -21,3 +21,4 @@ npm run dev
 More:
 
 npm i react-router-dom
+npm i miragejs

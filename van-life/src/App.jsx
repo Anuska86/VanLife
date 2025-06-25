@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Vans from "./components/pages/Vans";
+import "./server";
 
 export default function App() {
   return (
