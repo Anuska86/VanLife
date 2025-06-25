@@ -22,19 +22,20 @@ export default function Vans() {
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>Error loading vans</h2>;
 
-  return (
-    <div className="vans-page-container">
-      <h1>Our Vans 🚐</h1>
-      <div className="vans-list">
-        {vans.map((van) => (
-          <div key={van.id} className="van-type">
-            <img src={van.imageUrl} alt={van.name} />
-            <h3>{van.name}</h3>
-            <p>${van.price}/day</p>
-            <Link to={`/vans/${van.id}`}>View</Link>
-          </div>
-        ))}
+  const vanElements = vans.map((van) => (
+    <div key={van.id} className="van-tile">
+      <img src={van.imageUrl} alt={van.name} />
+      <div className="van-info">
+        <h3>{van.name}</h3>
+        <p>${van.price}/day</p>
       </div>
+      <Link to={`/vans/${van.id}`}>View</Link>
+    </div>
+  ));
+
+  return (
+    <div className="van-list-container">
+      <div className="van-list">{vanElements}</div>
     </div>
   );
 }
