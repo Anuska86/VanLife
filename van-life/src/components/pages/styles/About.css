@@ -5,6 +5,7 @@
   align-items: center;
   justify-items: center;
   justify-content: center;
+  background-color: #778368
 }
 
 .van-image {
@@ -35,7 +36,7 @@
   justify-content: center;
   align-items: center;
   width: 600px;
-  background-color: #ffcc8d;
+  background-color: #b07934;
   color: #161616;
   padding-inline: 32px;
   padding-bottom: 32px;
