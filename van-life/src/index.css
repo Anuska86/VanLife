@@ -92,9 +92,13 @@ header a:hover {
 .home-content {
   position: relative;
   z-index: 2;
-  width: 100%;
+  width: 75%;
+  height: 220px;
   text-align: center;
   font-weight: 700;
+  background-color: antiquewhite;
+  border-radius: 8px;
+  opacity: 0.9;
 }
 
 .home-container h1 {
