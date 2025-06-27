@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/VanDetail.css";
+import "../styles/VanDetail.css";
 import { useParams } from "react-router-dom";
 
 export default function VanDetail() {
