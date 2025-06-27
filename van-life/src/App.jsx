@@ -10,6 +10,7 @@ import Layout from "./components/Layout";
 import Dashboard from "./components/pages/Host/Dashboard";
 import Income from "./components/pages/Host/Income";
 import Reviews from "./components/pages/Host/Reviews";
+import HostLayout from "./components/pages/Host/HostLayout";
 
 export default function App() {
   return (
@@ -22,7 +23,8 @@ export default function App() {
           <Route path="/vans/:id" element={<VansDetail />} />
         </Route>
 
-        <Route path="/host" element={<Dashboard />}>
+        <Route element={<HostLayout />}>
+          <Route path="/host" element={<Dashboard />} />
           <Route path="/host/income" element={<Income />} />
           <Route path="/host/reviews" element={<Reviews />} />
         </Route>
