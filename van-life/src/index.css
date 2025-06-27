@@ -25,10 +25,9 @@ body {
 }
 
 header {
-  height: 85px;
+  min-height: 85px;
   display: flex;
   align-items: center;
-  padding-block: 10px;
   background-color: #ca7842;
   border-radius: 8px;
 }
