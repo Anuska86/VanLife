@@ -1,8 +1,18 @@
 /*** VAN PAGES ***/
 .van-list-container {
   padding-inline: 23px;
+  background-color: #b2cd9c;
+  margin-bottom: 20px;
 }
 
+.van-list-container button {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.van-list-container h1 {
+  color: #4b352a;
+}
 .van-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -12,18 +22,13 @@
 }
 
 .van-tile a {
-  color: #161616;
+  color: #4b352a;
   text-decoration: none;
 }
 
 .van-tile img {
   max-width: 100%;
   border-radius: 5px;
-}
-
-.van-list-container button {
-  margin-right: 20px;
-  cursor: pointer;
 }
 
 .van-type {
@@ -34,12 +39,12 @@
   border: none;
   border-radius: 5px;
   background-color: #ffead0;
-  color: #4d4d4d;
+  color: #4b352a;
   transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .van-type:hover {
-  color: #ffead0;
+  color: #a05e20;
 }
 
 .van-type:focus {
@@ -52,7 +57,7 @@
 
 .van-type.simple:hover,
 .van-type.simple.selected {
-  background-color: #e17654;
+  background-color: #a05e20;
 }
 
 .van-type.rugged:hover,

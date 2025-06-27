@@ -5,7 +5,7 @@
   align-items: center;
   justify-items: center;
   justify-content: center;
-  background-color: #778368
+  background-color: #B2CD9C;
 }
 
 .van-image {
@@ -16,7 +16,7 @@
 }
 .about-page-content {
   padding-inline: 23px;
-  color: #161616;
+  color: #4b352a;
   margin-bottom: 55px;
 }
 
@@ -36,8 +36,8 @@
   justify-content: center;
   align-items: center;
   width: 600px;
-  background-color: #b07934;
-  color: #161616;
+  background-color: #ca7842;
+  color: #4b352a;
   padding-inline: 32px;
   padding-bottom: 32px;
   margin-inline: 27px;
@@ -51,7 +51,7 @@
 }
 
 .about-page-cta .link-button {
-  background-color: #161616;
-  color: white;
+  background-color: #4b352a;
+  color: #f0f2bd;
   border-radius: 10px;
 }
