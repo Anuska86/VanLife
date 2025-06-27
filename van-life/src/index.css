@@ -3,7 +3,7 @@
 }
 
 #root {
-  background-color: #B2CD9C;
+  background-color: #b2cd9c;
   height: 100%;
   min-height: 100vh;
   width: 100vw;
@@ -17,7 +17,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: #B2CD9C;
+  background-color: #b2cd9c;
   font-family: "Inter", sans-serif;
   height: 100%;
   min-height: 100vh;
@@ -150,7 +150,7 @@ header nav {
   width: 200px;
   margin-top: 27px;
   padding-block: 0.75rem;
-  color: #F0F2BD;
+  color: #f0f2bd;
   font-weight: 700;
   border-radius: 5px;
   cursor: pointer;
