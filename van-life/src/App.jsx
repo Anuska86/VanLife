@@ -11,6 +11,7 @@ import Dashboard from "./components/pages/Host/Dashboard";
 import Income from "./components/pages/Host/Income";
 import Reviews from "./components/pages/Host/Reviews";
 import HostLayout from "./components/pages/Host/HostLayout";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -29,12 +30,6 @@ export default function App() {
           </Route>
         </Route>
       </Routes>
-      <footer className="footer">
-        {" "}
-        <p>
-          &copy; {new Date().getFullYear()} Anuska-VanLife. All rights reserved.
-        </p>
-      </footer>
     </BrowserRouter>
   );
 }
