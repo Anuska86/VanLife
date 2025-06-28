@@ -13,6 +13,7 @@ export default function HostNav() {
     <nav className="host-nav">
       <NavLink
         to="/host"
+        end
         style={({ isActive }) => (isActive ? activeStyle : null)}
       >
         Dashboard
