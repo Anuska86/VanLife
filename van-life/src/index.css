@@ -60,6 +60,7 @@ header nav {
 .my-link {
   color: #f0f2bd;
   font-weight: bold;
+  text-decoration: underline;
 }
 
 .link-button {
