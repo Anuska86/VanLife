@@ -1,5 +1,6 @@
 .host-nav {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .host-nav a {
