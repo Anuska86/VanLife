@@ -28,8 +28,9 @@ export default function HostNav() {
         to="/host/vans"
         style={({ isActive }) => (isActive ? activeStyle : null)}
       >
-        Host Van Details here
+        Vans
       </NavLink>
+
       <NavLink
         to="/host/reviews"
         style={({ isActive }) => (isActive ? activeStyle : null)}
