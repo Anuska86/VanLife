@@ -1,6 +1,5 @@
 .van-details-container {
   display: grid;
-  background-color: #b2cd9c;
   padding: 24px;
   margin: 30px 26px;
   justify-items: center;
@@ -20,6 +19,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #f0f2bd;
+  border-radius: 4px;
+  height: 450px;
+  width: 400px;
 }
 
 .van-info h3 {
