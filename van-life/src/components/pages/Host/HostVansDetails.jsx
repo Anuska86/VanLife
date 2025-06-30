@@ -1,9 +1,35 @@
 import React from "react";
+import "../styles/HostVansDetails.css";
+import { useParams } from "react-router-dom";
 
 export default function HostVansDetails() {
+  const params = useParams();
+  const [chosenVan, setChosenVan] = React.useState([]);
+  const [error, setError] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch(`/api/host/vans/${params.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setChosenVan(data.vans);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }),
+    [];
+
+  if (error) return <h2>Error loading Van Details</h2>;
+
   return (
-    <>
-      <h1>Your Vans Details Here</h1>
-    </>
+    <div className="van-details-container">
+      <h1>Your Vans Details Here: </h1>
+      <div className="van-info">
+        <img src={chosenVan.imageUrl} alt={chosenVan.name} />
+        <h3>Van name: {chosenVan.name}</h3>
+        <h3>Van type: {chosenVan.type}</h3>
+        <h4>Price: {chosenVan.price} €/day</h4>
+      </div>
+    </div>
   );
 }

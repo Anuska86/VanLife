@@ -7,7 +7,7 @@ export default function Vans() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
 
-  React.useEffect(function () {
+  React.useEffect(() => {
     fetch("/api/vans")
       .then((response) => response.json())
       .then((data) => {

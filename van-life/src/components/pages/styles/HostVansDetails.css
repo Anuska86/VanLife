@@ -1,0 +1,33 @@
+.van-details-container {
+  display: grid;
+  background-color: #b2cd9c;
+  padding: 24px;
+  margin: 30px 26px;
+  justify-items: center;
+}
+
+.van-details-container h1 {
+  color: #4b352a;
+}
+
+.van-details-container img {
+  height: 160px;
+  border-radius: 5px;
+}
+
+.van-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.van-info h3 {
+  font-weight: 700;
+  color: #4b352a;
+}
+
+.van-info h4 {
+  margin-block: 0;
+  color: #4b352a;
+}
