@@ -25,6 +25,12 @@ export default function HostNav() {
         Income
       </NavLink>
       <NavLink
+        to="/host/vans"
+        style={({ isActive }) => (isActive ? activeStyle : null)}
+      >
+        Host Van Details here
+      </NavLink>
+      <NavLink
         to="/host/reviews"
         style={({ isActive }) => (isActive ? activeStyle : null)}
       >
