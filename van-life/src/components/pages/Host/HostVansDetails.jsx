@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/HostVansDetails.css";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Outlet } from "react-router-dom";
+import HostDetailsNav from "./HostDetailsNav";
 
 export default function HostVansDetails() {
   const params = useParams();
@@ -30,10 +31,13 @@ export default function HostVansDetails() {
         <h1>Your Vans Details Here: </h1>
         <div className="van-info">
           <img src={chosenVan.imageUrl} alt={chosenVan.name} />
+          <HostDetailsNav />
           <h3>Van name: {chosenVan.name}</h3>
           <h3>Van type: {chosenVan.type}</h3>
           <h4>Price: {chosenVan.price} €/day</h4>
         </div>
+
+        <Outlet />
       </div>
     </section>
   );
