@@ -29,15 +29,20 @@ export default function HostVansDetails() {
       </Link>
       <div className="van-details-container">
         <h1>Your Vans Details Here: </h1>
-        <div className="van-info">
-          <img src={chosenVan.imageUrl} alt={chosenVan.name} />
-          <HostDetailsNav />
-          <h3>Van name: {chosenVan.name}</h3>
-          <h3>Van type: {chosenVan.type}</h3>
-          <h4>Price: {chosenVan.price} €/day</h4>
+        <div className="van-card">
+          <div className="van-info">
+            <img src={chosenVan.imageUrl} alt={chosenVan.name} />
+            <div className="van-text">
+              <h3>Van name: {chosenVan.name}</h3>
+              <h3>Van type: {chosenVan.type}</h3>
+              <h4>Price: {chosenVan.price} €/day</h4>
+            </div>
+          </div>
+          <div className="details-nav">
+            <HostDetailsNav />
+            <Outlet />
+          </div>
         </div>
-
-        <Outlet />
       </div>
     </section>
   );
