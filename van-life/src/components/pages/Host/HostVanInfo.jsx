@@ -2,14 +2,19 @@ import React from "react";
 import { useOutletContext } from "react-router-dom";
 
 export default function HostVanInfo() {
-  const van = useOutletContext();
+  const { chosenVan } = useOutletContext();
 
   return (
-    <div>
-      <h1>Host Van Info here</h1>
-      <p>Name: {van.name}</p>
-      <p>Type: {van.type}</p>
-      <p>Price:{van.price} €/day</p>
-    </div>
+    <section className="host-van-detail-info">
+      <h4>
+        <span>Name: {chosenVan.name}</span>
+      </h4>
+      <h4>
+        <span>Type: {chosenVan.type}</span>
+      </h4>
+      <h4>
+        <span>Description: {chosenVan.description}</span>
+      </h4>
+    </section>
   );
 }
