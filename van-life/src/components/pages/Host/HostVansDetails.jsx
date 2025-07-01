@@ -40,7 +40,7 @@ export default function HostVansDetails() {
           </div>
           <div className="details-nav">
             <HostDetailsNav />
-            <Outlet />
+            <Outlet context={chosenVan} />
           </div>
         </div>
       </div>
