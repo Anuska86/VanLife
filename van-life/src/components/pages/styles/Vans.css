@@ -31,6 +31,17 @@
   border-radius: 5px;
 }
 
+.van-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.van-info > p {
+  margin-left: 20px;
+  font-size: 1.17em;
+}
+
 .van-type {
   height: 34px;
   padding: 6px 26px;
