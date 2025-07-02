@@ -24,6 +24,17 @@ body {
   width: 100vw;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 header {
   min-height: 85px;
   display: flex;
