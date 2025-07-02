@@ -1,11 +1,16 @@
 import React, { useDeferredValue } from "react";
 import "../styles/Vans.css";
 import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export default function Vans() {
   const [vans, setVans] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const typeFilter = searchParams.get("type");
+  console.log("typeFilter:", typeFilter);
 
   React.useEffect(() => {
     fetch("/api/vans")
