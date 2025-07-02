@@ -1,15 +1,13 @@
 .host-van-link-wrapper {
-  color: unset;
+  color: #4b352a;
   text-decoration: unset;
 }
 
 .host-vans-list {
-  padding-inline: 26px;
-  display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
-  justify-content: center;
   padding-inline: 0;
+  column-count: 3;
+  column-gap: 40px;
 }
 
 .host-vans-title {
