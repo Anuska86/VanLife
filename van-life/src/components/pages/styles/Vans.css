@@ -75,6 +75,7 @@
 .van-type.simple:hover,
 .van-type.simple.selected {
   background-color: #ffead0;
+  color: #4b352a;
 }
 
 .van-type.luxury:hover,

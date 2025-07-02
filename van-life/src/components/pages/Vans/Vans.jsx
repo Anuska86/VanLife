@@ -43,7 +43,7 @@ export default function Vans() {
             <span>/day</span>
           </p>
         </div>
-        <i className={`van-type ${van.type}selected`}>{van.type}</i>
+        <i className={`van-type ${van.type} selected`}>{van.type}</i>
       </Link>
     </div>
   ));
@@ -66,7 +66,7 @@ export default function Vans() {
         <button
           onClick={() => handleFilterChange("type", "simple")}
           className={`van-type simple${
-            typeFilter === "simple" ? "selected" : ""
+            typeFilter === "simple" ? " selected" : ""
           }`}
         >
           Simple
@@ -74,7 +74,7 @@ export default function Vans() {
         <button
           onClick={() => handleFilterChange("type", "luxury")}
           className={`van-type luxury${
-            typeFilter === "luxury" ? "selected" : ""
+            typeFilter === "luxury" ? " selected" : ""
           }`}
         >
           Luxury
@@ -82,7 +82,7 @@ export default function Vans() {
         <button
           onClick={() => handleFilterChange("type", "rugged")}
           className={`van-type rugged${
-            typeFilter === "rugged" ? "selected" : ""
+            typeFilter === "rugged" ? " selected" : ""
           }`}
         >
           Rugged
