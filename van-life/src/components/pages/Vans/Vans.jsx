@@ -10,7 +10,10 @@ export default function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const typeFilter = searchParams.get("type");
-  console.log("typeFilter:", typeFilter);
+
+  const displayedVans = typeFilter
+    ? vans.filter((van) => van.type.toLowerCase() === typeFilter)
+    : vans;
 
   React.useEffect(() => {
     fetch("/api/vans")
@@ -28,7 +31,7 @@ export default function Vans() {
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>Error loading vans</h2>;
 
-  const vanElements = vans.map((van) => (
+  const vanElements = displayedVans.map((van) => (
     <div key={van.id} className="van-tile">
       <Link to={`/vans/${van.id}`}>
         <img src={van.imageUrl} alt={van.name} />
