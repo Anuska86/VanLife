@@ -1,9 +1,11 @@
 import React from "react";
 import "../styles/VanDetail.css";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 
 export default function VanDetail() {
   const params = useParams();
+  const location = useLocation();
+
   const [van, setVan] = React.useState(null);
 
   React.useEffect(() => {
@@ -17,10 +19,15 @@ export default function VanDetail() {
       });
   }, [params.id]);
 
+  const search = location.state?.search || "";
+  const backText = location.state?.type
+    ? `Back to ${location.state.type} vans`
+    : "Back to all vans";
+
   return (
     <div className="van-detail-container">
-      <Link to=".." relative="path" className="back-button">
-        &larr;<span>Back to all vans</span>
+      <Link to={`..${search}`} relative="path" className="back-button">
+        &larr;<span>{backText}</span>
       </Link>
       {van ? (
         <div className="van-detail">
