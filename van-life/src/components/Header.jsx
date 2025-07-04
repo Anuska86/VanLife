@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { FaUserLock } from "react-icons/fa";
 
 export default function Header() {
   return (
@@ -29,6 +30,9 @@ export default function Header() {
         >
           Vans
         </NavLink>
+        <Link to="login" className="login-link">
+          <FaUserLock size={34} />
+        </Link>
       </nav>
     </header>
   );

@@ -2,11 +2,21 @@ import React from "react";
 import "./index.css";
 import "./server";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+//import from components
+import Layout from "./components/Layout";
+import Login from "./components/Login";
+
+//import from pages
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
+import NotFound from "./components/pages/NotFound";
+
+//import from Vans
 import Vans from "./components/pages/Vans/Vans";
 import VansDetail from "./components/pages/Vans/VanDetail";
-import Layout from "./components/Layout";
+
+//import from Host
 import Dashboard from "./components/pages/Host/Dashboard";
 import Income from "./components/pages/Host/Income";
 import Reviews from "./components/pages/Host/Reviews";
@@ -16,7 +26,6 @@ import HostVansDetails from "./components/pages/Host/HostVansDetails";
 import HostVanInfo from "./components/pages/Host/HostVanInfo";
 import HostVanPhotos from "./components/pages/Host/HostVanPhotos";
 import HostVanPricing from "./components/pages/Host/HostVanPricing";
-import NotFound from "./components/pages/NotFound";
 
 export default function App() {
   return (
@@ -27,6 +36,7 @@ export default function App() {
           <Route path="about" element={<About />} />
           <Route path="vans" element={<Vans />} />
           <Route path="vans/:id" element={<VansDetail />} />
+          <Route path="login" element={<Login />} />
 
           <Route path="host" element={<HostLayout />}>
             <Route index element={<Dashboard />} />
