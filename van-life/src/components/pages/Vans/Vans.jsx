@@ -2,6 +2,7 @@ import React, { useDeferredValue } from "react";
 import "../styles/Vans.css";
 import { Link } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+import { getVans } from "../../../api";
 
 export default function Vans() {
   const [vans, setVans] = React.useState([]);
@@ -16,20 +17,21 @@ export default function Vans() {
     : vans;
 
   React.useEffect(() => {
-    fetch("/api/vans")
-      .then((response) => response.json())
-      .then((data) => {
-        setVans(data.vans);
+    async function loadVans() {
+      try {
+        const data = await getVans();
+        setVans(data);
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         setError(error);
         setLoading(false);
-      });
+      }
+    }
+    loadVans();
   }, []);
 
   if (loading) return <h2>Loading...</h2>;
-  if (error) return <h2>Error loading vans</h2>;
+  if (error) return <h2>Ups! There was an error: {error.message}</h2>;
 
   const vanElements = displayedVans.map((van) => (
     <div key={van.id} className="van-tile">
