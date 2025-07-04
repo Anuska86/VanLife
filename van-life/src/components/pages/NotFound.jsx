@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles/NotFound.css";
 import { Link } from "react-router-dom";
+import funnyVan from "../../images/funnyVan.png";
 
 export default function NotFound() {
   return (
