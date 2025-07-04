@@ -31,7 +31,7 @@ export default function Header() {
           Vans
         </NavLink>
         <Link to="login" className="login-link">
-          <FaUserLock size={34} />
+          <FaUserLock size={30} />
         </Link>
       </nav>
     </header>
