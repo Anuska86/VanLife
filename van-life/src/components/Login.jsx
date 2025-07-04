@@ -29,6 +29,7 @@ export default function Login() {
           placeholder="Email adress"
           value={loginFormData.email}
         />
+        <br />
         <input
           name="password"
           onChange={handleChange}
