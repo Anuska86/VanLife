@@ -1,6 +1,7 @@
 import React from "react";
 import "../components/pages/styles/Login.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import { loginUser } from "../api";
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = React.useState({
@@ -9,6 +10,24 @@ export default function Login() {
   });
 
   const location = useLocation();
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+
+  React.useEffect(() => {
+    async function loadFormData() {
+      setLoading(true);
+      try {
+        const data = await loginUser();
+        setLoginFormData(data); // Assuming this is how you want to update form data
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadFormData();
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
