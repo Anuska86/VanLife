@@ -1,23 +1,37 @@
 import React from "react";
 import "../styles/VanDetail.css";
 import { useParams, Link, useLocation } from "react-router-dom";
+import { getVans } from "../../../api";
 
 export default function VanDetail() {
   const params = useParams();
   const location = useLocation();
 
   const [van, setVan] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    fetch(`/api/vans/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setVan(data.vans);
-      })
-      .catch((error) => {
-        console.error("Error fetching van details:", error);
-      });
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getVans(params.id);
+        setVan(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadVans();
   }, [params.id]);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>;
+  }
 
   const search = location.state?.search || "";
   const backText = location.state?.type

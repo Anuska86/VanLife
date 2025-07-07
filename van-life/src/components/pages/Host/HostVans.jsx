@@ -1,14 +1,25 @@
 import React from "react";
 import "../styles/HostVans.css";
 import { Link, NavLink } from "react-router-dom";
+import { getHostVans } from "../../../api";
 
 export default function HostVans() {
   const [vans, setVans] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(nill);
 
   React.useEffect(() => {
-    fetch("/api/host/vans")
-      .then((response) => response.json())
-      .then((data) => setVans(data.vans));
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getHostVans();
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadVans();
   }, []);
 
   const HostVansElements = vans.map((van) => (
@@ -22,6 +33,14 @@ export default function HostVans() {
       </div>
     </Link>
   ));
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>;
+  }
 
   return (
     <section className="host-vans-section">

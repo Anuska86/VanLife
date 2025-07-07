@@ -7,6 +7,7 @@ export default function HostVansDetails() {
   const params = useParams();
   const [chosenVan, setChosenVan] = React.useState([]);
   const [error, setError] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     fetch(`/api/host/vans/${params.id}`)
@@ -16,9 +17,12 @@ export default function HostVansDetails() {
       })
       .catch((error) => {
         setError(error);
+        setLoading(false);
       });
   }),
     [];
+
+  if (loading) return <h2 aria-live="polite">Loading...</h2>;
 
   if (error) return <h2>Error loading Van Details</h2>;
 
