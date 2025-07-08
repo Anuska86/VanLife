@@ -15,6 +15,7 @@ export default function Login() {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const from = location.state?.from || "/host";
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,10 +23,8 @@ export default function Login() {
     setError(null);
     try {
       const data = await loginUser(loginFormData);
-
-      console.log("Login response", data);
-      console.log("Navigating to /host...");
-      navigate("/host", { replace: true });
+      localStorage.setItem("loggedin", true);
+      navigate(from, { replace: true });
     } catch (error) {
       setError(error);
       console.error("Login failed:", error);

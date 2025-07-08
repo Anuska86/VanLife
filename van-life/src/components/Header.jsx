@@ -1,10 +1,13 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaUserLock } from "react-icons/fa";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   function fakeLogOut() {
     localStorage.removeItem("loggedin");
+    navigate("/login", { replace: true });
   }
 
   return (
