@@ -26,12 +26,11 @@ export default function VanDetail() {
     loadVans();
   }, [params.id]);
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-  if (error) {
-    return <h1>There was an error: {error.message}</h1>;
-  }
+  if (loading) return <h2 aria-live="polite">Loading...</h2>;
+  if (error)
+    return (
+      <h2 aria-live="assertive">Ups! There was an error: {error.message}</h2>
+    );
 
   const search = location.state?.search || "";
   const backText = location.state?.type
