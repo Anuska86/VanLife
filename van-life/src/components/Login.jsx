@@ -9,10 +9,12 @@ export default function Login() {
     password: "",
   });
 
-  const location = useLocation();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   const [status, setStatus] = React.useState("idle");
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,6 +24,8 @@ export default function Login() {
       const data = await loginUser(loginFormData);
 
       console.log("Login response", data);
+      console.log("Navigating to /host...");
+      navigate("/host", { replace: true });
     } catch (error) {
       setError(error);
       console.error("Login failed:", error);
