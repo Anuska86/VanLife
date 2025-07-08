@@ -30,12 +30,18 @@ export default function Vans() {
     loadVans();
   }, []);
 
-  if (loading) return <h2 aria-live="polite">Loading...</h2>;
+  if (loading)
+    return (
+      <h2 style={{ color: "brown" }} aria-live="polite">
+        Loading...
+      </h2>
+    );
   if (error)
     return (
-      <h2 aria-live="assertive">Ups! There was an error: {error.message}</h2>
+      <h2 style={{ color: "red" }} aria-live="assertive">
+        Ups! There was an error: {error.message}
+      </h2>
     );
-
   const vanElements = displayedVans.map((van) => (
     <div key={van.id} className="van-tile">
       <Link

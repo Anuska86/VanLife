@@ -12,15 +12,21 @@ export default function Login() {
   const location = useLocation();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const [status, setStatus] = React.useState("idle");
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setStatus("submitting");
+    setError(null);
     try {
       const data = await loginUser(loginFormData);
 
       console.log("Login response", data);
     } catch (error) {
+      setError(error);
       console.error("Login failed:", error);
+    } finally {
+      setStatus("idle");
     }
   }
 
@@ -29,10 +35,17 @@ export default function Login() {
     setLoginFormData((prev) => ({ ...prev, [name]: value }));
   }
 
-  if (loading) return <h2 aria-live="polite">Loading...</h2>;
+  if (loading)
+    return (
+      <h2 style={{ color: "brown" }} aria-live="polite">
+        Loading...
+      </h2>
+    );
   if (error)
     return (
-      <h2 aria-live="assertive">Ups! There was an error: {error.message}</h2>
+      <h2 style={{ color: "red" }} aria-live="assertive">
+        Ups! There was an error: {error.message}
+      </h2>
     );
 
   return (
@@ -58,7 +71,9 @@ export default function Login() {
           placeholder="Password"
           value={loginFormData.password}
         />
-        <button>Log in</button>
+        <button disabled={status === "submitting"}>
+          {status === "submitting" ? "Loggin in..." : "Log in"}
+        </button>
       </form>
     </div>
   );

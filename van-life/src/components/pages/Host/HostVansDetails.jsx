@@ -22,9 +22,18 @@ export default function HostVansDetails() {
   }),
     [];
 
-  if (loading) return <h2 aria-live="polite">Loading...</h2>;
-
-  if (error) return <h2>Error loading Van Details</h2>;
+  if (loading)
+    return (
+      <h2 style={{ color: "brown" }} aria-live="polite">
+        Loading...
+      </h2>
+    );
+  if (error)
+    return (
+      <h2 style={{ color: "red" }} aria-live="assertive">
+        Ups!Error loading Vans Details... {error.message}
+      </h2>
+    );
 
   return (
     <section>

@@ -34,10 +34,17 @@ export default function HostVans() {
     </Link>
   ));
 
-  if (loading) return <h2 aria-live="polite">Loading...</h2>;
+  if (loading)
+    return (
+      <h2 style={{ color: "brown" }} aria-live="polite">
+        Loading...
+      </h2>
+    );
   if (error)
     return (
-      <h2 aria-live="assertive">Ups! There was an error: {error.message}</h2>
+      <h2 style={{ color: "red" }} aria-live="assertive">
+        Ups! There was an error: {error.message}
+      </h2>
     );
   return (
     <section className="host-vans-section">
