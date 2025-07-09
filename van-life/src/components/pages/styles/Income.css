@@ -1,10 +1,10 @@
 .host-income {
   padding-inline: 26px;
-  color: #161616;
+  color: #4b352a;
 }
 
 .host-income > p {
-  color: #4d4d4d;
+  color: #4b352a;
 }
 
 .host-income > p span {
@@ -14,17 +14,12 @@
 
 .host-income > h2 {
   font-size: 38px;
-  color: #161616;
+  color: #4b352a;
   font-weight: 900;
 }
 
-img.graph {
-  width: 100%;
-  max-width: 500px;
-}
-
 .host-income .info-header > p {
-  color: #4d4d4d;
+  color: #4b352a;
 }
 
 .host-income .info-header > p span {
@@ -36,13 +31,14 @@ img.graph {
   font-weight: 700;
   font-size: 24px;
   margin-top: 60px;
+  color: #4b352a;
 }
 
 .host-income .transaction {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #f0f2bd;
   margin-bottom: 31px;
   padding: 35px 29px;
   border-radius: 6px;
@@ -56,5 +52,15 @@ img.graph {
 .host-income .transaction > p {
   font-weight: 500;
   font-size: 20px;
-  color: #4d4d4d;
+  color: #4b352a;
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction-id {
+  font-size: 14px;
+  color: #4b352a;
 }
