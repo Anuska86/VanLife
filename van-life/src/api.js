@@ -10,7 +10,7 @@ function sleep(ms) {
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, collection } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -34,18 +34,15 @@ const analytics = getAnalytics(app);
 
 //FUNCTIONS
 
-export async function getVans(id) {
-  const url = id ? `/api/vans/${id}` : "/api/vans";
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw {
-      message: "Failed to fetch vans",
-      statusText: response.statusText,
-      status: response.status,
-    };
-  }
-  const data = await response.json();
-  return data.vans;
+const vansCollectionRef = collection(db, "vans");
+
+export async function getVans() {
+  const snapshot = await getDocs(vansCollectionRef);
+  const vans = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  return vans;
 }
 
 export async function getHostVans(id) {
