@@ -96,7 +96,7 @@ export default function Reviews() {
         </ResponsiveContainer>
       </div>
 
-      <h3>Reviews (2)</h3>
+      <h3>Reviews({reviewsData.length})</h3>
       {reviewsData.map((review) => (
         <div key={review.id}>
           <div className="review">
