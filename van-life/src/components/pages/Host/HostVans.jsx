@@ -13,6 +13,7 @@ export default function HostVans() {
       setLoading(true);
       try {
         const data = await getHostVans();
+        setVans(data);
       } catch (error) {
         setError(error);
       } finally {
