@@ -1,19 +1,31 @@
 .host-van-single {
   display: grid;
+  gap: 16px;
   align-items: center;
   background-color: #f0f2bd;
   margin-bottom: 15px;
   padding-block: 18px;
   padding-left: 24px;
-  height: 200px;
+  height: 230px;
   width: 300px;
   border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.host-van-single:hover {
+  background-color: #e8ebb0;
+  cursor: pointer;
 }
 
 .host-van-single > img {
   height: 70px;
   border-radius: 5px;
   margin-right: 17px;
+}
+
+.host-van-single > img:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
 }
 
 .host-van-info h3 {
@@ -27,7 +39,7 @@
 }
 
 .host-dashboard-earnings {
-  background-color: #ffead0;
+  background-color: #7c9b62;
   padding: 37px 26px;
   display: flex;
   justify-content: space-between;
@@ -36,7 +48,7 @@
 
 .host-dashboard-earnings > .info > h1 {
   font-size: 36px;
-  color: #161616;
+  color: #4b352a;
   margin: 0;
 }
 
@@ -52,12 +64,12 @@
 .host-dashboard-earnings > .info > h2 {
   margin: 0;
   font-size: 38px;
-  color: #161616;
+  color: #4b352a;
   font-weight: 900;
 }
 
 .host-dashboard-reviews {
-  background-color: #ffddb2;
+  background-color: #f0f2bd;
   padding: 25px 26px;
   display: flex;
   align-items: center;
