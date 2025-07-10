@@ -12,7 +12,7 @@ export default function VanDetail() {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    async function loadVan() {
+    async function loadVans() {
       setLoading(true);
       try {
         const data = await getVan(params.id);
@@ -23,7 +23,7 @@ export default function VanDetail() {
         setLoading(false);
       }
     }
-    loadVan();
+    loadVans();
   }, [params.id]);
 
   if (loading)
