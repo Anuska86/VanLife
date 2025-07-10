@@ -16,6 +16,8 @@ import {
   doc,
   getDocs,
   getDoc,
+  query,
+  where,
 } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -65,18 +67,18 @@ export async function getVan(id) {
   return { id: snapshot.id, ...snapshot.data() };
 }
 
-export async function getHostVans(id) {
-  const url = id ? `/api/host/vans/${id}` : "/api/host/vans";
-  const response = await fetch(url);
-  if (!response.ok) {
+export async function getHostVans() {
+  const q = query(vansCollectionRef, where("hostId", "==", "123"));
+  const snapshot = await getDoc(q);
+
+  if (!snapshot.exists()) {
     throw {
-      message: "Failed to fetch vans",
-      statusText: response.statusText,
-      status: response.status,
+      message: "Van not found",
+      statusText: "Not found",
+      status: 404,
     };
   }
-  const data = await response.json();
-  return data.vans;
+  return { id: snapshot.id, ...snapshot.data() };
 }
 
 export async function loginUser(creds) {
