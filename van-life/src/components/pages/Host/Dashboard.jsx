@@ -10,21 +10,14 @@ export default function Dashboard() {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    const fetchVans = async () => {
-      setLoading(true);
-
-      try {
-        const data = await getHostVans();
-        setVans(data);
-      } catch (error) {
-        console.error("Error fetching vans:", error);
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchVans();
+    setLoading(true);
+    getHostVans()
+      .then((data) => setVans(data))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
   }, []);
+
+  console.log("Fetched van data:", vans);
 
   function renderVanElements(vans) {
     const hostVansElements = vans.map((van) => (

@@ -60,13 +60,6 @@ export async function getVan(id) {
   const docRef = doc(db, "vans", id);
   const snapshot = await getDoc(docRef);
 
-  if (!snapshot.exists()) {
-    throw {
-      message: "Van not found",
-      statusText: "Not found",
-      status: 404,
-    };
-  }
   return { ...snapshot.data(), id: snapshot.id };
 }
 
@@ -79,13 +72,6 @@ export async function getHostVans() {
     id: doc.id,
   }));
 
-  if (vans.length === 0) {
-    throw {
-      message: "No vans found for this host",
-      statusText: "Not found",
-      status: 404,
-    };
-  }
   return vans;
 }
 
@@ -102,14 +88,6 @@ export async function loginUser(creds) {
     body: JSON.stringify(creds),
   });
   const data = await response.json();
-
-  if (!response.ok) {
-    throw {
-      message: data.message,
-      statusText: response.statusText,
-      status: response.status,
-    };
-  }
 
   return data;
 }
