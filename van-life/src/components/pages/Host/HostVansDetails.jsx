@@ -2,25 +2,29 @@ import React from "react";
 import "../styles/HostVansDetails.css";
 import { useParams, Link, Outlet } from "react-router-dom";
 import HostDetailsNav from "./HostDetailsNav";
+import { getVan } from "../../../api";
 
 export default function HostVansDetails() {
-  const params = useParams();
   const [chosenVan, setChosenVan] = React.useState([]);
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
 
+  const { id } = useParams();
+
   React.useEffect(() => {
-    fetch(`/api/host/vans/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setChosenVan(data.vans);
-      })
-      .catch((error) => {
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getVan(id);
+        setChosenVan(data);
+      } catch (error) {
         setError(error);
+      } finally {
         setLoading(false);
-      });
-  }),
-    [];
+      }
+    }
+    loadVans();
+  }, [id]);
 
   if (loading)
     return (
