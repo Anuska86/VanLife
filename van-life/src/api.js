@@ -60,19 +60,35 @@ export async function getVan(id) {
   const docRef = doc(db, "vans", id);
   const snapshot = await getDoc(docRef);
 
+  if (!snapshot.exists()) {
+    throw {
+      message: "Van not found",
+      statusText: "Not Found",
+      status: 404,
+    };
+  }
+
   return { ...snapshot.data(), id: snapshot.id };
 }
 
 export async function getHostVans() {
-  const q = query(vansCollectionRef, where("hostId", "==", "123"));
-  const snapshot = await getDocs(q);
+  try {
+    console.log("Running getHostVans...");
+    const q = query(vansCollectionRef, where("hostId", "==", "123"));
+    const snapshot = await getDocs(q);
+    console.log("Snapshot size:", snapshot.size);
 
-  const vans = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id,
-  }));
+    const vans = snapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
 
-  return vans;
+    console.log("Mapped vans:", vans);
+    return vans;
+  } catch (error) {
+    console.error("Error inside getHostVans:", error);
+    throw error; // ensures `.catch` in useEffect catches it
+  }
 }
 
 //INCOME

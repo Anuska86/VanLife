@@ -9,15 +9,43 @@ export default function Dashboard() {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
-  React.useEffect(() => {
-    setLoading(true);
-    getHostVans()
-      .then((data) => setVans(data))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
-  }, []);
+React.useEffect(() => {
+  console.log("Fetching host vans...");
+  getHostVans()
+    .then((data) => {
+      console.log("Vans returned:", data);
+      setVans(data);
+    })
+    .catch((err) => {
+      console.error("Error fetching vans:", err);
+    });
+}, []);
 
-  console.log("Fetched van data:", vans);
+
+React.useEffect(() => {
+  console.log("Vans state updated:", vans);
+}, [vans]);
+
+  /*
+  React.useEffect(() => {
+    console.log("Fetching vans...");
+    const fetchVans = async () => {
+      setLoading(true);
+
+      try {
+        const data = await getHostVans();
+        setVans(data);
+      } catch (error) {
+        console.error("Error fetching vans:", error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchVans();
+  }, []);
+*/
+  console.log("Loading vans... : ", vans);
 
   function renderVanElements(vans) {
     const hostVansElements = vans.map((van) => (
@@ -38,12 +66,6 @@ export default function Dashboard() {
     );
   }
 
-  if (loading)
-    return (
-      <h2 style={{ color: "brown" }} aria-live="polite">
-        Loading...
-      </h2>
-    );
   if (error)
     return (
       <h2 style={{ color: "red" }} aria-live="assertive">
@@ -78,7 +100,11 @@ export default function Dashboard() {
           <h2>Your listed vans</h2>
           <Link to="vans">View all</Link>
         </div>
-        {loading ? <h1>Loading...</h1> : <>{renderVanElements(vans)}</>}
+        {loading && !vans ? (
+          <h1>Loading...</h1>
+        ) : (
+          <>{renderVanElements(vans)}</>
+        )}
       </section>
     </>
   );

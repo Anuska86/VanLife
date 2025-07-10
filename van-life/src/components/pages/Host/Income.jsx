@@ -35,12 +35,6 @@ export default function Income() {
     0
   );
 
-  if (loading)
-    return (
-      <h2 style={{ color: "brown" }} aria-live="polite">
-        Loading...
-      </h2>
-    );
   if (error)
     return (
       <h2 style={{ color: "red" }} aria-live="assertive">

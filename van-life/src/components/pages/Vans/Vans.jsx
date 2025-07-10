@@ -30,12 +30,6 @@ export default function Vans() {
     loadVans();
   }, []);
 
-  if (loading)
-    return (
-      <h2 style={{ color: "brown" }} aria-live="polite">
-        Loading...
-      </h2>
-    );
   if (error)
     return (
       <h2 style={{ color: "red" }} aria-live="assertive">
