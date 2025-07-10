@@ -17,6 +17,7 @@ export default function Dashboard() {
         const data = await getHostVans();
         setVans(data);
       } catch (error) {
+        console.error("Error fetching vans:", error);
         setError(error);
       } finally {
         setLoading(false);
@@ -84,11 +85,7 @@ export default function Dashboard() {
           <h2>Your listed vans</h2>
           <Link to="vans">View all</Link>
         </div>
-        {loading && !vans ? (
-          <h1>Loading...</h1>
-        ) : (
-          <>{renderVanElements(vans)}</>
-        )}
+        {loading ? <h1>Loading...</h1> : <>{renderVanElements(vans)}</>}
       </section>
     </>
   );

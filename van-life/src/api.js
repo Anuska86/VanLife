@@ -18,13 +18,16 @@ import {
   getDoc,
   query,
   where,
+  documentId,
 } from "firebase/firestore";
+
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
   apiKey: "AIzaSyC7Bh-maeoHlZtNF9DaqR2UvxRBp2nP-k0",
   authDomain: "vanlife-6c51a.firebaseapp.com",
@@ -64,21 +67,33 @@ export async function getVan(id) {
       status: 404,
     };
   }
-  return { id: snapshot.id, ...snapshot.data() };
+  return { ...snapshot.data(), id: snapshot.id };
 }
 
 export async function getHostVans() {
   const q = query(vansCollectionRef, where("hostId", "==", "123"));
-  const snapshot = await getDoc(q);
+  const snapshot = await getDocs(q);
 
-  if (!snapshot.exists()) {
+  const vans = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+
+  if (vans.length === 0) {
     throw {
-      message: "Van not found",
+      message: "No vans found for this host",
       statusText: "Not found",
       status: 404,
     };
   }
-  return { id: snapshot.id, ...snapshot.data() };
+  return vans;
+}
+
+//INCOME
+const incomeCollectionRef = collection(db, "income");
+export async function getIncomeTransactions() {
+  const snapshot = await getDocs(incomeCollectionRef);
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 }
 
 export async function loginUser(creds) {

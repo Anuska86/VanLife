@@ -5,7 +5,7 @@ import HostDetailsNav from "./HostDetailsNav";
 import { getVan } from "../../../api";
 
 export default function HostVansDetails() {
-  const [chosenVan, setChosenVan] = React.useState([]);
+  const [chosenVan, setChosenVan] = React.useState(null);
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
 
@@ -29,7 +29,7 @@ export default function HostVansDetails() {
   if (loading)
     return (
       <h2 style={{ color: "brown" }} aria-live="polite">
-        Loading...
+        Loading van data
       </h2>
     );
   if (error)
