@@ -18,7 +18,7 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDxmy_PjSF6Y_jkFoptemwplDit8qbygc0",
+  apiKey: "AIzaSyC7Bh-maeoHlZtNF9DaqR2UvxRBp2nP-k0",//"AIzaSyC0oeWCuheBZEQ3chBEUM4lOvUOWDmF1jo", //HIDE
   authDomain: "vanlife-6c51a.firebaseapp.com",
   projectId: "vanlife-6c51a",
   storageBucket: "vanlife-6c51a.firebasestorage.app",
