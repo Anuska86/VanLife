@@ -10,7 +10,13 @@ function sleep(ms) {
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDocs,
+  getDoc,
+} from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,7 +24,7 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC7Bh-maeoHlZtNF9DaqR2UvxRBp2nP-k0",//"AIzaSyC0oeWCuheBZEQ3chBEUM4lOvUOWDmF1jo", //HIDE
+  apiKey: "AIzaSyC7Bh-maeoHlZtNF9DaqR2UvxRBp2nP-k0",
   authDomain: "vanlife-6c51a.firebaseapp.com",
   projectId: "vanlife-6c51a",
   storageBucket: "vanlife-6c51a.firebasestorage.app",
@@ -43,6 +49,20 @@ export async function getVans() {
     id: doc.id,
   }));
   return vans;
+}
+
+export async function getVan(id) {
+  const docRef = doc(db, "vans", id);
+  const snapshot = await getDoc(docRef);
+
+  if (!snapshot.exists()) {
+    throw {
+      message: "Van not found",
+      statusText: "Not found",
+      status: 404,
+    };
+  }
+  return { id: snapshot.id, ...snapshot.data() };
 }
 
 export async function getHostVans(id) {
