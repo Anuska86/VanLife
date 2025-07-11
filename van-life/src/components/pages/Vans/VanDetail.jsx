@@ -3,6 +3,7 @@ import "../styles/VanDetail.css";
 import { useParams, Link, useLocation } from "react-router-dom";
 //import { getVans } from "../../../api";
 import { getVans } from "../../../apiFirebase";
+import { getVan } from "../../../apiFirebase";
 
 export default function VanDetail() {
   const params = useParams();
@@ -12,6 +13,22 @@ export default function VanDetail() {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
+  React.useEffect(() => {
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getVan(params.id);
+        setVan(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadVans();
+  }, [params.id]);
+
+  /*
   React.useEffect(() => {
     async function loadVans() {
       setLoading(true);
@@ -26,6 +43,8 @@ export default function VanDetail() {
     }
     loadVans();
   }, [params.id]);
+
+  */
 
   if (loading)
     return (

@@ -46,23 +46,25 @@ export default function HostVansDetails() {
       <Link to=".." relative="path" className="back-button">
         &larr;<span>Back to all vans</span>
       </Link>
-      <div className="van-details-container">
-        <h1>Your Vans Details Here: </h1>
-        <div className="van-card">
-          <div className="van-info">
-            <img src={chosenVan.imageUrl} alt={chosenVan.name} />
-            <div className="van-text">
-              <h3>Van name: {chosenVan.name}</h3>
-              <h3>Van type: {chosenVan.type}</h3>
-              <h4>Price: {chosenVan.price} €/day</h4>
+      {chosenVan && (
+        <div className="van-details-container">
+          <h1>Your Vans Details Here: </h1>
+          <div className="van-card">
+            <div className="van-info">
+              <img src={chosenVan.imageUrl} alt={chosenVan.name} />
+              <div className="van-text">
+                <h3>Van name: {chosenVan.name}</h3>
+                <h3>Van type: {chosenVan.type}</h3>
+                <h4>Price: {chosenVan.price} €/day</h4>
+              </div>
+            </div>
+            <div className="details-nav">
+              <HostDetailsNav />
+              <Outlet context={{ chosenVan }} />
             </div>
           </div>
-          <div className="details-nav">
-            <HostDetailsNav />
-            <Outlet context={{ chosenVan }} />
-          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
