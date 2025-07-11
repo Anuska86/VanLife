@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/VanDetail.css";
 import { useParams, Link, useLocation } from "react-router-dom";
-import { getVan } from "../../../api";
+import { getVans } from "../../../api";
 
 export default function VanDetail() {
   const params = useParams();
@@ -15,7 +15,7 @@ export default function VanDetail() {
     async function loadVans() {
       setLoading(true);
       try {
-        const data = await getVan(params.id);
+        const data = await getVans(params.id);
         setVan(data);
       } catch (error) {
         setError(error);

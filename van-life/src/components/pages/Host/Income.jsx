@@ -9,7 +9,19 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { getIncomeTransactions } from "../../../api";
+
+// import { getIncomeTransactions } from "../../../api";
+
+export default function Income() {
+  const [error, setError] = React.useState(null);
+
+  const transactionsData = [
+    { amount: 720, date: "Jan 3, '23", id: "1" },
+    { amount: 560, date: "Dec 12, '22", id: "2" },
+    { amount: 980, date: "Dec 3, '22", id: "3" },
+  ];
+
+  /*
 
 export default function Income() {
   const [transactionsData, setTransactionsData] = React.useState([]);
@@ -29,6 +41,8 @@ export default function Income() {
     }
     fetchData();
   }, []);
+
+  */
 
   const totalIncome = transactionsData.reduce(
     (sum, item) => sum + item.amount,
