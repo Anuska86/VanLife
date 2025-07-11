@@ -56,23 +56,15 @@ export async function getHostVans() {
   return vans;
 }
 
-/*
-
 //INCOME
-const incomeCollectionRef = collection(db, "income");
-export async function getIncomeTransactions() {
-  const snapshot = await getDocs(incomeCollectionRef);
-  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+const transactionsRef = collection(db, "transactionData");
+
+export async function getTransactions() {
+  const snapshot = await getDocs(transactionsRef);
+  const transactions = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  return transactions;
 }
-
-export async function loginUser(creds) {
-  const response = await fetch("/api/login", {
-    method: "post",
-    body: JSON.stringify(creds),
-  });
-  const data = await response.json();
-
-  return data;
-}
-
-*/

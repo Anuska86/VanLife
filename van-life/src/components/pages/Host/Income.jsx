@@ -21,29 +21,6 @@ export default function Income() {
     { amount: 980, date: "Dec 3, '22", id: "3" },
   ];
 
-  /*
-
-export default function Income() {
-  const [transactionsData, setTransactionsData] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getIncomeTransactions();
-        setTransactionsData(data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
-
-  */
-
   const totalIncome = transactionsData.reduce(
     (sum, item) => sum + item.amount,
     0
