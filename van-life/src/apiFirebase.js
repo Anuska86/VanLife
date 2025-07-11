@@ -5,7 +5,7 @@ import {
   doc,
   getDocs,
   getDoc,
-} from "firebase/firestore";
+} from "firebase/firestore/lite";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC7Bh-maeoHlZtNF9DaqR2UvxRBp2nP-k0",
