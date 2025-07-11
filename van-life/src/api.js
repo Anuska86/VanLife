@@ -78,6 +78,10 @@ export async function getHostVans() {
     const snapshot = await getDocs(q);
     console.log("Snapshot size:", snapshot.size);
 
+    snapshot.forEach((doc) => {
+      console.log("Van doc:", doc.id, doc.data());
+    });
+
     const vans = snapshot.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
@@ -87,9 +91,31 @@ export async function getHostVans() {
     return vans;
   } catch (error) {
     console.error("Error inside getHostVans:", error);
+    throw error;
+  }
+}
+/*
+export async function getHostVans() {
+  try {
+    console.log("Running getHostVans...");
+    const q = query(vansCollectionRef, where("hostId", "==", "123"));
+    const snapshot = await getDocs(q);
+    console.log("Snapshot size:", snapshot.size);
+
+    const vans = snapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));S
+
+    console.log("Mapped vans:", vans);
+    return vans;
+  } catch (error) {
+    console.error("Error inside getHostVans:", error);
     throw error; // ensures `.catch` in useEffect catches it
   }
 }
+
+*/
 
 //INCOME
 const incomeCollectionRef = collection(db, "income");

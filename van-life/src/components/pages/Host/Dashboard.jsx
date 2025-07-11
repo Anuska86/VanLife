@@ -9,31 +9,14 @@ export default function Dashboard() {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
-React.useEffect(() => {
-  console.log("Fetching host vans...");
-  getHostVans()
-    .then((data) => {
-      console.log("Vans returned:", data);
-      setVans(data);
-    })
-    .catch((err) => {
-      console.error("Error fetching vans:", err);
-    });
-}, []);
-
-
-React.useEffect(() => {
-  console.log("Vans state updated:", vans);
-}, [vans]);
-
-  /*
   React.useEffect(() => {
-    console.log("Fetching vans...");
     const fetchVans = async () => {
       setLoading(true);
 
       try {
         const data = await getHostVans();
+        console.log("Fetched vans:", data);
+
         setVans(data);
       } catch (error) {
         console.error("Error fetching vans:", error);
@@ -44,7 +27,7 @@ React.useEffect(() => {
     };
     fetchVans();
   }, []);
-*/
+
   console.log("Loading vans... : ", vans);
 
   function renderVanElements(vans) {
@@ -100,11 +83,7 @@ React.useEffect(() => {
           <h2>Your listed vans</h2>
           <Link to="vans">View all</Link>
         </div>
-        {loading && !vans ? (
-          <h1>Loading...</h1>
-        ) : (
-          <>{renderVanElements(vans)}</>
-        )}
+        {loading ? <h1>Loading...</h1> : <>{renderVanElements(vans)}</>}
       </section>
     </>
   );
