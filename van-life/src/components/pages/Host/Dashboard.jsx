@@ -28,8 +28,6 @@ export default function Dashboard() {
     fetchVans();
   }, []);
 
-  console.log("Loading vans... : ", vans);
-
   function renderVanElements(vans) {
     const hostVansElements = vans.map((van) => (
       <div className="host-van-single" key={van.id}>
