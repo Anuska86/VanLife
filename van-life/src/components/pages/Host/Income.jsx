@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Income.css";
+import { getTransactions } from "../../../apiFirebase";
 import {
   LineChart,
   Line,
@@ -10,26 +11,37 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// import { getIncomeTransactions } from "../../../api";
-
 export default function Income() {
+  const [transactions, setTransactions] = React.useState([]);
   const [error, setError] = React.useState(null);
 
+  /*
   const transactionsData = [
     { amount: 720, date: "Jan 3, '23", id: "1" },
     { amount: 560, date: "Dec 12, '22", id: "2" },
     { amount: 980, date: "Dec 3, '22", id: "3" },
   ];
 
-  const totalIncome = transactionsData.reduce(
-    (sum, item) => sum + item.amount,
-    0
-  );
+  */
+
+  const totalIncome = transactions.reduce((sum, item) => sum + item.amount, 0);
+
+  React.useEffect(() => {
+    async function loadTransactions() {
+      try {
+        const data = await getTransactions();
+        setTransactions(data);
+      } catch (error) {
+        setError(error);
+      }
+    }
+    loadTransactions();
+  }, []);
 
   if (error)
     return (
       <h2 style={{ color: "red" }} aria-live="assertive">
-        Ups!Error loading Vans Details... {error.message}
+        Ups!Error loading transactions details... {error.message}
       </h2>
     );
 
@@ -42,25 +54,25 @@ export default function Income() {
       <h2>${totalIncome.toLocaleString()}</h2>
       <div className="income-graph">
         <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={transactionsData}>
+          <LineChart data={transactions}>
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="date" />
             <YAxis />
             <Tooltip />
-            <Line type="monotone" dataKey="amount" stroke="#8884d8" />
+            <Line type="monotone" dataKey="amount" stroke="#ca7842" />
           </LineChart>
         </ResponsiveContainer>
       </div>
       <div className="info-header">
-        <h3>Your transactions ({transactionsData.length})</h3>
+        <h3>Your transactions ({transactions.length})</h3>
         <p>
           Last <span>30 days</span>
         </p>
       </div>
       <div className="transactions">
-        {transactionsData.map((item) => {
+        {transactions.map((item) => {
           const formattedDate = new Date(
-            item.date.replace("'", "20")
+            item.date.replace(/'(\d{2})/, "20$1")
           ).toLocaleDateString("en-US", {
             month: "short",
             day: "numeric",
