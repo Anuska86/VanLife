@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/HostVans.css";
 import { Link, NavLink } from "react-router-dom";
-import { getHostVans } from "../../../api";
+import { getHostVans } from "../../../apiFirebase";
+//import { getHostVans } from "../../../api";
 
 export default function HostVans() {
   const [vans, setVans] = React.useState([]);

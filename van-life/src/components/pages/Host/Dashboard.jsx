@@ -2,7 +2,8 @@ import React from "react";
 import "../../pages/styles/Dashboard.css";
 import { Link } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
-import { getHostVans } from "../../../api";
+import { getHostVans } from "../../../apiFirebase";
+//import { getHostVans } from "../../../api";
 
 export default function Dashboard() {
   const [vans, setVans] = React.useState([]);
