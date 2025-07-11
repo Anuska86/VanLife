@@ -2,7 +2,8 @@ import React, { useDeferredValue } from "react";
 import "../styles/Vans.css";
 import { Link } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import { getVans } from "../../../api";
+//import { getVans } from "../../../api";
+import { getVans } from "../../../apiFirebase";
 
 export default function Vans() {
   const [vans, setVans] = React.useState([]);

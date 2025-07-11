@@ -8,6 +8,8 @@ function sleep(ms) {
 
 //FUNCTIONS
 
+/*
+
 export async function getVans(id) {
   const url = id ? `/api/vans/${id}` : "/api/vans";
   const response = await fetch(url);
@@ -21,6 +23,8 @@ export async function getVans(id) {
   const data = await response.json();
   return data.vans;
 }
+
+*/
 
 export async function getHostVans(id) {
   const url = id ? `/api/host/vans/${id}` : "/api/host/vans";

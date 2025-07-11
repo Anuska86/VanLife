@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/VanDetail.css";
 import { useParams, Link, useLocation } from "react-router-dom";
-import { getVans } from "../../../api";
+//import { getVans } from "../../../api";
+import { getVans } from "../../../apiFirebase";
 
 export default function VanDetail() {
   const params = useParams();
