@@ -82,10 +82,20 @@ export default function Income() {
           return (
             <div key={item.id} className="transaction">
               <div className="transaction-info">
-                <h3>${item.amount.toLocaleString()}</h3>
-                <p>{formattedDate}</p>
+                <h3>Amount: {item.amount.toLocaleString()} €</h3>
+                <p>Date of transaction: {formattedDate}</p>
               </div>
-              <p className="transaction-id">#Income-{item.id}</p>
+              <p className="transaction-id">Transaction id: 
+                {" "}
+                #
+                {new Date(
+                  item.date.replace(/'(\d{2})/, "20$1")
+                ).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                })}
+                -{item.amount}
+              </p>
             </div>
           );
         })}
