@@ -15,15 +15,6 @@ export default function Income() {
   const [transactions, setTransactions] = React.useState([]);
   const [error, setError] = React.useState(null);
 
-  /*
-  const transactionsData = [
-    { amount: 720, date: "Jan 3, '23", id: "1" },
-    { amount: 560, date: "Dec 12, '22", id: "2" },
-    { amount: 980, date: "Dec 3, '22", id: "3" },
-  ];
-
-  */
-
   const totalIncome = transactions.reduce((sum, item) => sum + item.amount, 0);
 
   React.useEffect(() => {
@@ -85,9 +76,8 @@ export default function Income() {
                 <h3>Amount: {item.amount.toLocaleString()} €</h3>
                 <p>Date of transaction: {formattedDate}</p>
               </div>
-              <p className="transaction-id">Transaction id: 
-                {" "}
-                #
+              <p className="transaction-id">
+                Transaction id: #
                 {new Date(
                   item.date.replace(/'(\d{2})/, "20$1")
                 ).toLocaleDateString("en-US", {
