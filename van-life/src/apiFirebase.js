@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import {
   getFirestore,
@@ -10,6 +10,7 @@ import {
   query,
   where,
   documentId,
+  setDoc,
 } from "firebase/firestore/lite";
 
 const firebaseConfig = {
@@ -72,6 +73,27 @@ export async function getUserRoleByEmail(email) {
     return data.role || null;
   } else {
     return null;
+  }
+}
+export async function registerUser(email, password, role = "host") {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+
+    // Create Firestore profile
+    await setDoc(doc(db, "users", user.uid), {
+      email: user.email,
+      role: role,
+      user_id: user.uid, // or a custom ID if needed
+    });
+
+    return user;
+  } catch (error) {
+    throw error;
   }
 }
 
