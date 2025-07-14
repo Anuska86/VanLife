@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Reviews.css";
 import { BsStarFill } from "react-icons/bs";
+import { getReviews } from "../../../apiFirebase";
 import {
   BarChart,
   Bar,
@@ -12,6 +13,12 @@ import {
 } from "recharts";
 
 export default function Reviews() {
+  const [reviews, setReviews] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  const [error, setError] = React.useState(null);
+
+  /*
   const reviewsData = [
     {
       rating: 5,
@@ -70,11 +77,37 @@ export default function Reviews() {
       id: "8",
     },
   ];
+*/
+
+  React.useEffect(() => {
+    async function loadReviews() {
+      try {
+        const data = await getReviews();
+        setReviews(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadReviews();
+  }, []);
+
+  const sortedReviews = [...reviews].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
 
   const ratingSummary = [1, 2, 3, 4, 5].map((r) => ({
     rating: r,
-    count: reviewsData.filter((review) => review.rating === r).length,
+    count: sortedReviews.filter((review) => review.rating === r).length,
   }));
+
+  if (error)
+    return (
+      <h2 style={{ color: "red" }} aria-live="assertive">
+        Ups!Error loading the reviews... {error.message}
+      </h2>
+    );
 
   return (
     <section className="host-reviews">
@@ -96,8 +129,8 @@ export default function Reviews() {
         </ResponsiveContainer>
       </div>
 
-      <h3>Reviews({reviewsData.length})</h3>
-      {reviewsData.map((review) => (
+      <h3>Reviews({sortedReviews.length})</h3>
+      {sortedReviews.map((review) => (
         <div key={review.id}>
           <div className="review">
             {[...Array(review.rating)].map((_, i) => (

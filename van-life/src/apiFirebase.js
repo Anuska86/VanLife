@@ -68,3 +68,16 @@ export async function getTransactions() {
   }));
   return transactions;
 }
+
+//REVIEWS
+
+const reviewsRef = collection(db, "reviewsData");
+
+export async function getReviews() {
+  const snapshot = await getDocs(reviewsRef);
+  const reviews = snapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  return reviews;
+}

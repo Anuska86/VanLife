@@ -1,6 +1,49 @@
 const reviewsData = [
   {
     rating: 5,
+    name: "Clara",
+    date: "February 14, 2025",
+    text: "Valentine’s road trip in this van was unforgettable. Cozy, clean, and surprisingly romantic. The host even left us chocolates!",
+    id: "9",
+  },
+  {
+    rating: 4,
+    name: "Jonas",
+    date: "March 22, 2025",
+    text: "Really solid van. A bit of trouble with the heater at night, but the host was responsive and helped us sort it quickly.",
+    id: "10",
+  },
+  {
+    rating: 5,
+    name: "Nina",
+    date: "May 5, 2025",
+    text: "Perfect for our spring break adventure! Smooth ride, great fuel efficiency, and the interior was super chic.",
+    id: "11",
+  },
+  {
+    rating: 2,
+    name: "Thomas",
+    date: "June 30, 2025",
+    text: "Not the best experience. The van had a weird smell and the water pump didn’t work. Host was apologetic but still disappointing.",
+    id: "12",
+  },
+  {
+    rating: 5,
+    name: "Isabel",
+    date: "July 10, 2025",
+    text: "Absolutely loved it! Took it through the Basque Country and it handled every twist and turn like a champ. Will book again!",
+    id: "13",
+  },
+  {
+    rating: 4,
+    name: "Marco",
+    date: "August 3, 2025",
+    text: "Great van overall. AC could’ve been stronger during the heatwave, but everything else was top-notch.",
+    id: "14",
+  },
+
+  {
+    rating: 5,
     name: "Elliot",
     date: "January 3, 2025",
     text: "The beach bum is such an awesome van! Such a comfortable trip. We had it for 2 weeks and there was not a single issue. Super clean when we picked it up and the host is very comfortable and understanding. Highly recommend!",
