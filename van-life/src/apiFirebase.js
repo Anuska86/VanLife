@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
 import {
   getFirestore,
   collection,
@@ -23,6 +25,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+export const auth = getAuth(app);
 
 //FIREBASE FUNCTIONS
 
@@ -54,6 +57,22 @@ export async function getHostVans() {
     id: doc.id,
   }));
   return vans;
+}
+
+//USERS
+
+export async function getUserRoleByEmail(email) {
+  const usersRef = collection(db, "users");
+  const q = query(usersRef, where("email", "==", email));
+  const snapshot = await getDocs(q);
+
+  if (!snapshot.empty) {
+    const userDoc = snapshot.docs[0];
+    const data = userDoc.data();
+    return data.role || null;
+  } else {
+    return null;
+  }
 }
 
 //INCOME

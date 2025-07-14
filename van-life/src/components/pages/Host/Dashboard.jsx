@@ -3,6 +3,7 @@ import "../../pages/styles/Dashboard.css";
 import { Link } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
 import { getHostVans } from "../../../apiFirebase";
+import { signOut } from "firebase/auth";
 //import { getHostVans } from "../../../api";
 
 export default function Dashboard() {

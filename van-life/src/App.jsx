@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 //import from components
 import Layout from "./components/Layout";
 import Login from "./components/Login";
+import AdminDashboard from "./components/AdminDashboard";
 
 //import from pages
 import Home from "./components/pages/Home";
@@ -51,6 +52,9 @@ export default function App() {
                 <Route path="photos" element={<HostVanPhotos />} />
               </Route>
             </Route>
+          </Route>
+          <Route element={<AuthRequired requireAdmin={true} />}>
+            <Route path="/admin" element={<AdminDashboard />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

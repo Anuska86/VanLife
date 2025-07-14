@@ -1,13 +1,25 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaUserLock } from "react-icons/fa";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../apiFirebase";
 
 export default function Header() {
+  const [user, setUser] = React.useState(null);
+
   const navigate = useNavigate();
 
-  function fakeLogOut() {
-    localStorage.removeItem("loggedin");
-    navigate("/login", { replace: true });
+  React.useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  function handleLogout() {
+    signOut(auth).then(() => {
+      navigate("/login", { replace: true });
+    });
   }
 
   return (
@@ -37,10 +49,19 @@ export default function Header() {
         >
           Vans
         </NavLink>
-        <Link to="login" className="login-link">
-          <FaUserLock size={30} />
-        </Link>
-        <button onClick={fakeLogOut}>X</button>
+
+        {user ? (
+          <>
+            <button className="logout-button" onClick={handleLogout}>
+              Log out
+            </button>
+            <span className="user-email">{user.email}</span>
+          </>
+        ) : (
+          <Link to="login" className="login-link">
+            <FaUserLock size={30} />
+          </Link>
+        )}
       </nav>
     </header>
   );

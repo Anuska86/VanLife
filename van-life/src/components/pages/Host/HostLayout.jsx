@@ -1,12 +1,45 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import "../styles/HostLayout.css";
+import { Outlet, useNavigate } from "react-router-dom";
 import HostNav from "./HostNav";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../apiFirebase";
 
 export default function HostLayout() {
+  const [user, setUser] = React.useState(null);
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  function handleLogout() {
+    signOut(auth).then(() => {
+      navigate("/login");
+    });
+  }
   return (
-    <>
-      <HostNav />
-      <Outlet />
-    </>
+    <div className="host-layout">
+      <header className="host-header">
+        <HostNav />
+        <div className="host-actions">
+          {user ? (
+            <>
+              <span className="host-user">{user.email}</span>
+              <button onClick={handleLogout}>Log out</button>
+            </>
+          ) : (
+            <Link to="/login">Log in</Link>
+          )}
+        </div>
+      </header>
+
+      <main>
+        <Outlet />
+      </main>
+    </div>
   );
 }

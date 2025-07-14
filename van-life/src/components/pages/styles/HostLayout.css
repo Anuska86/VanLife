@@ -1,0 +1,19 @@
+.host-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+}
+
+.host-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.host-user {
+  font-weight: bold;
+  color: #333;
+}

@@ -1,7 +1,12 @@
 import React from "react";
 import "../components/pages/styles/Login.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { loginUser } from "../api";
+import {
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth } from "../apiFirebase";
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = React.useState({
@@ -17,19 +22,31 @@ export default function Login() {
   const navigate = useNavigate();
   const from = location.state?.from || "/host";
 
+  React.useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate("/host");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   async function handleSubmit(e) {
     e.preventDefault();
-    setStatus("submitting");
+    setLoading(true);
     setError(null);
     try {
-      const data = await loginUser(loginFormData);
-      localStorage.setItem("loggedin", true);
+      await signInWithEmailAndPassword(
+        auth,
+        loginFormData.email,
+        loginFormData.password
+      );
       navigate(from, { replace: true });
-    } catch (error) {
-      setError(error);
-      console.error("Login failed:", error);
+    } catch (err) {
+      setError(err);
+      console.error("Login failed:", err);
     } finally {
-      setStatus("idle");
+      setLoading(false);
     }
   }
 
@@ -38,10 +55,10 @@ export default function Login() {
     setLoginFormData((prev) => ({ ...prev, [name]: value }));
   }
 
-  if (loading)
+  if (status === "submitting")
     return (
       <h2 style={{ color: "brown" }} aria-live="polite">
-        Loading...
+        Logging in...
       </h2>
     );
   if (error)
@@ -58,13 +75,21 @@ export default function Login() {
       )}
 
       <h1>Sign in</h1>
+
+      {error && (
+        <p className="login-error" aria-live="assertive">
+          ⚠️ {error.message}
+        </p>
+      )}
+
       <form onSubmit={handleSubmit} className="login-form">
         <input
           name="email"
           onChange={handleChange}
           type="email"
-          placeholder="Email adress"
+          placeholder="Email address"
           value={loginFormData.email}
+          required
         />
         <br />
         <input
@@ -73,9 +98,10 @@ export default function Login() {
           type="password"
           placeholder="Password"
           value={loginFormData.password}
+          required
         />
-        <button disabled={status === "submitting"}>
-          {status === "submitting" ? "Loggin in..." : "Log in"}
+        <button disabled={loading}>
+          {loading ? "Logging in..." : "Log in"}
         </button>
       </form>
     </div>
