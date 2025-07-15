@@ -24,27 +24,44 @@ export default function Login() {
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("Firebase connection test:", user ? "Connected" : "No user");
+
       if (user) {
         navigate("/host");
       }
     });
+
     return () => unsubscribe();
   }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log("Login form submitted");
     setLoading(true);
     setError(null);
     try {
-      await signInWithEmailAndPassword(
+      console.log("Attempting Firebase login...");
+
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         loginFormData.email,
         loginFormData.password
       );
+      console.log("Login success:", userCredential.user);
+
       navigate(from, { replace: true });
-    } catch (err) {
-      setError(err);
-      console.error("Login failed:", err);
+    } catch (error) {
+      console.error("Login failed:", error);
+
+      if (error.code === "auth/network-request-failed") {
+        setError({ message: "Network error: Please check your connection." });
+      } else if (error.code === "auth/wrong-password") {
+        setError({ message: "Incorrect password. Please try again." });
+      } else if (error.code === "auth/user-not-found") {
+        setError({ message: "No account found with this email." });
+      } else {
+        setError(error);
+      }
     } finally {
       setLoading(false);
     }
@@ -64,7 +81,8 @@ export default function Login() {
   if (error)
     return (
       <h2 style={{ color: "red" }} aria-live="assertive">
-        Ups! There was an error: {error.message}
+        ERROR:
+        {error.message}
       </h2>
     );
 

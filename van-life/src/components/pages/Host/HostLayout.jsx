@@ -11,6 +11,7 @@ export default function HostLayout() {
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("HostLayout auth state:", currentUser);
       setUser(currentUser);
     });
     return () => unsubscribe();

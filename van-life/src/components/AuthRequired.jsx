@@ -12,15 +12,22 @@ export default function AuthRequired({ requireAdmin = false }) {
   const location = useLocation();
 
   React.useEffect(() => {
+    let isMounted = true;
+
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
+      if (currentUser && isMounted) {
         const role = await getUserRoleByEmail(currentUser.email);
-        setUser(currentUser);
-        setRole(role);
+        if (isMounted) {
+          setUser(currentUser);
+          setRole(role);
+        }
       }
-      setLoading(false);
+      if (isMounted) setLoading(false);
     });
-    return () => unsubscribe();
+    return () => {
+      isMounted = false;
+      unsubscribe();
+    };
   }, []);
 
   if (loading)
