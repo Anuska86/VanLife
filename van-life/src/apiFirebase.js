@@ -76,7 +76,9 @@ export async function getUserRoleByEmail(email) {
     return null;
   }
 }
+
 export async function registerUser(email, password, role = "host") {
+  console.log("Attemping to register:", email);
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -86,10 +88,10 @@ export async function registerUser(email, password, role = "host") {
     const user = userCredential.user;
 
     // Create Firestore profile
-    await setDoc(doc(db, "users", user.uid), {
+    await setDoc(doc(db, "users", user_id), {
       email: user.email,
       role: role,
-      user_id: user.uid, // or a custom ID if needed
+      user_id: user_id, // or a custom ID if needed
     });
 
     return user;

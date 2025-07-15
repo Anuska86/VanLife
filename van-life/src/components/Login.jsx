@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { auth } from "../apiFirebase";
+import { auth, registerUser } from "../apiFirebase";
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = React.useState({

@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/HostLayout.css";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, Link } from "react-router-dom";
 import HostNav from "./HostNav";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../apiFirebase";
