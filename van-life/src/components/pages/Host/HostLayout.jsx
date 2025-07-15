@@ -30,7 +30,9 @@ export default function HostLayout() {
           {user ? (
             <>
               <span className="host-user">{user.email}</span>
-              <button onClick={handleLogout}>Log out</button>
+              <button className="button-logout" onClick={handleLogout}>
+                Log out
+              </button>
             </>
           ) : (
             <Link to="/login">Log in</Link>
