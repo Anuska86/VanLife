@@ -50,18 +50,9 @@ export default function Header() {
           Vans
         </NavLink>
 
-        {user ? (
-          <>
-            <button className="logout-button" onClick={handleLogout}>
-              Log out
-            </button>
-            <span className="user-email">{user.email}</span>
-          </>
-        ) : (
-          <Link to="login" className="login-link">
-            <FaUserLock size={30} />
-          </Link>
-        )}
+        <Link to="login" className="login-link">
+          <FaUserLock size={30} />
+        </Link>
       </nav>
     </header>
   );
