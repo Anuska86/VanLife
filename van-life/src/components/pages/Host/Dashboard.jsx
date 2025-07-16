@@ -33,10 +33,12 @@ export default function Dashboard() {
   function renderVanElements(vans) {
     const hostVansElements = vans.map((van) => (
       <div className="host-van-single" key={van.id}>
-        <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
+        {van.imageUrl && (
+          <img src={van.imageUrl} alt={`Photo of ${van.name || "van"}`} />
+        )}
         <div className="host-van-info">
-          <h3>{van.name}</h3>
-          <p>{van.price}€/day</p>
+          <h3>{van.name || "No name"}</h3>
+          <p> {van.price ? `${van.price} €/day` : "No price"} </p>
         </div>
         <Link to={`vans/${van.id}`}>View</Link>
       </div>

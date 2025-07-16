@@ -4,10 +4,11 @@
 }
 
 .host-vans-list {
-  gap: 1rem;
-  padding-inline: 0;
-  column-count: 3;
-  column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 0;
 }
 
 .host-vans-title {
@@ -25,21 +26,25 @@
 }
 
 .host-van-single {
-  display: grid;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   background-color: #f0f2bd;
-  margin-bottom: 15px;
-  padding-block: 18px;
-  padding-left: 24px;
-  height: 230px;
-  width: 300px;
+  margin-bottom: 0;
+  padding: 18px 24px;
+  margin-bottom: 10px;
+  height: 243px;
   border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .host-van-single > img {
   height: 70px;
+  width: 100px;
+  object-fit: cover;
   border-radius: 5px;
-  margin-right: 17px;
+  margin-bottom: 1rem;
+  margin-right: 0;
 }
 
 .host-van-info h3 {
