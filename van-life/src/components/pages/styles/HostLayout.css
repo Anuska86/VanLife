@@ -6,24 +6,3 @@
   background-color: #bbc79a;
   border-bottom: 1px solid #ddd;
 }
-
-.host-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.host-user {
-  font-weight: bold;
-  color: #4b352a;
-}
-
-.button-logout {
-  background-color: #ca7842;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.1s ease-in-out;
-  width: 100px;
-  height: 35px;
-  color: rgb(240, 242, 189);
-}

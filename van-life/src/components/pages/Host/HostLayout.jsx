@@ -25,19 +25,7 @@ export default function HostLayout() {
   return (
     <div className="host-layout">
       <header className="host-header">
-        <HostNav />
-        <div className="host-actions">
-          {user ? (
-            <>
-              <span className="host-user">{user.email}</span>
-              <button className="button-logout" onClick={handleLogout}>
-                Log out
-              </button>
-            </>
-          ) : (
-            <Link to="/login">Log in</Link>
-          )}
-        </div>
+        <HostNav user={user} onLogout={handleLogout} />
       </header>
 
       <main>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../styles/HostNav.css";
 
-export default function HostNav() {
+export default function HostNav({ user, onLogout }) {
   const activeStyle = {
     color: "#f0f2bd",
     fontWeight: "bold",
@@ -37,6 +37,18 @@ export default function HostNav() {
       >
         Reviews
       </NavLink>
+      <div className="host-actions">
+        {user ? (
+          <>
+            <span className="host-user">{user.email}</span>
+            <button className="button-logout" onClick={onLogout}>
+              Log out
+            </button>
+          </>
+        ) : (
+          <Link to="/login">Log in</Link>
+        )}
+      </div>
     </nav>
   );
 }
