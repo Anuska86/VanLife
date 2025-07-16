@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../users/UserContext";
 import { Link, NavLink } from "react-router-dom";
 import "../styles/HostNav.css";
 
-export default function HostNav({ user, onLogout }) {
+export default function HostNav({ onLogout }) {
+  const { user } = useContext(UserContext);
+  console.log("User in HostNav:", user);
+
   const activeStyle = {
     color: "#f0f2bd",
     fontWeight: "bold",
@@ -37,6 +41,14 @@ export default function HostNav({ user, onLogout }) {
       >
         Reviews
       </NavLink>
+      {user?.role === "admin" && (
+        <NavLink
+          to="/admin"
+          style={({ isActive }) => (isActive ? activeStyle : null)}
+        >
+          Admin Dashboard
+        </NavLink>
+      )}
       <div className="host-actions">
         {user ? (
           <>

@@ -51,6 +51,23 @@ export async function getVan(id) {
   };
 }
 
+export async function getHostsData() {
+  const usersRef = collection(db, "users");
+  const q = query(usersRef, where("role", "==", "host"));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+}
+
+export async function getUserProfile(uid) {
+  const docRef = doc(db, "users", uid);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    return null;
+  }
+}
+
 export async function getHostVans() {
   const q = query(vansCollectionRef, where("hostId", "==", "123"));
   const snapshot = await getDocs(q);
@@ -59,6 +76,13 @@ export async function getHostVans() {
     id: doc.id,
   }));
   return vans;
+}
+
+export async function getVansByHostId(hostId) {
+  const vansRef = collection(db, "vans");
+  const q = query(vansRef, where("hostId", "==", hostId));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 }
 
 //USERS
@@ -88,10 +112,10 @@ export async function registerUser(email, password, role = "host") {
     const user = userCredential.user;
 
     // Create Firestore profile
-    await setDoc(doc(db, "users", user_id), {
+    await setDoc(doc(db, "users", user.uid), {
       email: user.email,
       role: role,
-      user_id: user_id, // or a custom ID if needed
+      alias: user.alias, // CUSTOM ID, the id of the firebase is user.uid
     });
 
     return user;
