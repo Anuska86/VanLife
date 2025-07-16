@@ -32,28 +32,38 @@ export default function AdminDashboard() {
 
   return (
     <section className="admin-dashboard">
-      <h1>Admin Dashboard</h1>
-      <p>Welcome, admin! Here you can manage users, vans, and site settings.</p>
-      <h2>Registered Hosts</h2>
-      <ul>
-        {hosts.map((host) => (
-          <li key={host.id}>
-            <strong>{host.alias || host.email}</strong>
-            {host.email && <> - {host.email}</>}
-            <ul>
-              {vansByHost[host.id]?.length > 0 ? (
-                vansByHost[host.id].map((van) => (
-                  <li key={van.id}>
-                    {van.name} (${van.price})
-                  </li>
-                ))
-              ) : (
-                <li>No vans</li>
-              )}
-            </ul>
-          </li>
-        ))}
-      </ul>
+      <div className="admin-dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <p>
+          Welcome, admin! Here you can manage users, vans, and site settings.
+        </p>
+      </div>
+      <div className="admin-dashboard-wrapper">
+        <div>
+          <h2 className="admin-dashboard-title">Registered Hosts</h2>
+        </div>
+        <div className="admin-dasboard-host-list">
+          <ul>
+            {hosts.map((host) => (
+              <li key={host.id}>
+                <strong>{host.alias || host.email}</strong>
+                {host.email && <> - {host.email}</>}
+                <ul>
+                  {vansByHost[host.id]?.length > 0 ? (
+                    vansByHost[host.id].map((van) => (
+                      <li key={van.id}>
+                        {van.name} (${van.price})
+                      </li>
+                    ))
+                  ) : (
+                    <li>No vans</li>
+                  )}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
   );
 }
