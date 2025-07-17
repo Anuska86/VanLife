@@ -101,7 +101,7 @@ export async function getUserRoleByEmail(email) {
   }
 }
 
-export async function registerUser(email, password, role = "host") {
+export async function registerUser(email, password, alias, role = "host") {
   console.log("Attemping to register:", email);
   try {
     const userCredential = await createUserWithEmailAndPassword(
@@ -116,6 +116,7 @@ export async function registerUser(email, password, role = "host") {
       email: user.email,
       role: role,
       alias: user.alias, // CUSTOM ID, the id of the firebase is user.uid
+      status: "active",
     });
 
     return user;
