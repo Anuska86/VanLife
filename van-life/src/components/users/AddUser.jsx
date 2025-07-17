@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { registerUser } from "../../apiFirebase";
+import "../../components/pages/styles/AddUser.css";
 
 export default function AddUserForm() {
   const [email, setEmail] = useState("");
@@ -23,6 +24,7 @@ export default function AddUserForm() {
 
   return (
     <form onSubmit={handleSubmit} className="add-user-form">
+      <h3 className="add-user-form-title">Add New User</h3>
       <input
         type="text"
         placeholder="Alias"

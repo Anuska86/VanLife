@@ -1,6 +1,7 @@
 import React from "react";
 import "../components/pages/styles/AdminDashboard.css";
 import { getHostsData, getVansByHostId } from "../apiFirebase";
+import AddUserForm from "./users/AddUser";
 
 export default function AdminDashboard() {
   const [hosts, setHosts] = React.useState([]);
@@ -62,6 +63,11 @@ export default function AdminDashboard() {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="admin-dashboard-add-user">
+          <h2 className="admin-dashboard-title"></h2>
+          <AddUserForm />
         </div>
       </div>
     </section>

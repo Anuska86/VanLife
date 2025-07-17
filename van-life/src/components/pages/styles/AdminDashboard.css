@@ -41,3 +41,12 @@ p {
   text-align: left;
   color: #4b352a;
 }
+
+.admin-dashboard-add-user {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+  background-color: #F0F2BD;
+  border-radius: 6px;
+  color: #4B352A;
+}
