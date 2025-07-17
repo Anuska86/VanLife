@@ -52,10 +52,10 @@ export default function HostNav({ onLogout }) {
       <div className="host-actions">
         {user ? (
           <>
-            <span className="host-user">{user.email}</span>
             <button className="button-logout" onClick={onLogout}>
               Log out
             </button>
+            <span className="host-user">{user.alias}</span>
           </>
         ) : (
           <Link to="/login">Log in</Link>
