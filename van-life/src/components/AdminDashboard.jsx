@@ -44,29 +44,37 @@ export default function AdminDashboard() {
           <h2 className="admin-dashboard-title">Registered Hosts</h2>
         </div>
         <div className="admin-dasboard-host-list">
-          <ul>
+          <div className="host-card-list">
             {hosts.map((host) => (
-              <li key={host.id}>
-                <strong>{host.alias || host.email}</strong>
-                {host.email && <> - {host.email}</>}
-                <ul>
+              <div key={host.id} className="host-card">
+                <h3>{host.alias || host.email}</h3>
+                <p>{host.email}</p>
+                <p>
+                  <strong>Role:</strong> {host.role}
+                </p>
+                <p>
+                  <strong>Status:</strong> {host.status || "active"}
+                </p>
+                <div className="host-vans">
+                  <h4>Vans:</h4>
                   {vansByHost[host.id]?.length > 0 ? (
-                    vansByHost[host.id].map((van) => (
-                      <li key={van.id}>
-                        {van.name} (${van.price})
-                      </li>
-                    ))
+                    <ul>
+                      {vansByHost[host.id].map((van) => (
+                        <li key={van.id}>
+                          🚐 <strong>{van.name}</strong> — ${van.price}
+                        </li>
+                      ))}
+                    </ul>
                   ) : (
-                    <li>No vans</li>
+                    <p>No vans</p>
                   )}
-                </ul>
-              </li>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
 
         <div className="admin-dashboard-add-user">
-          <h2 className="admin-dashboard-title"></h2>
           <AddUserForm />
         </div>
       </div>
