@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Layout from "./components/Layout";
 import Login from "./components/Login";
 import AdminDashboard from "./components/AdminDashboard";
+import DevLogin from "./components/users/DevLogin";
 
 //import from pages
 import Home from "./components/pages/Home";
@@ -56,6 +57,7 @@ export default function App() {
           <Route element={<AuthRequired requireAdmin={true} />}>
             <Route path="/admin" element={<AdminDashboard />} />
           </Route>
+          <Route path="/dev-login" element={<DevLogin />}></Route>
 
           <Route path="*" element={<NotFound />} />
         </Route>

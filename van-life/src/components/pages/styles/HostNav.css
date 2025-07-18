@@ -36,3 +36,9 @@
   height: 35px;
   color: rgb(240, 242, 189);
 }
+
+.dev-login-link {
+  margin-left: 1rem;
+  color: #ff9800;
+  font-weight: bold;
+}
