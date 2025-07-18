@@ -3,6 +3,7 @@ import "../../pages/styles/Dashboard.css";
 import { Link } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
 import { getHostVans } from "../../../apiFirebase";
+import { UserContext } from "../../users/UserContext";
 import { signOut } from "firebase/auth";
 //import { getHostVans } from "../../../api";
 
@@ -11,12 +12,15 @@ export default function Dashboard() {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
+  const { user } = React.useContext(UserContext);
+
   React.useEffect(() => {
     const fetchVans = async () => {
+      if (!user?.uid) return;
       setLoading(true);
 
       try {
-        const data = await getHostVans();
+        const data = await getHostVans(user.uid);
         console.log("Fetched vans:", data);
 
         setVans(data);
@@ -28,7 +32,7 @@ export default function Dashboard() {
       }
     };
     fetchVans();
-  }, []);
+  }, [user]);
 
   function renderVanElements(vans) {
     const hostVansElements = vans.map((van) => (

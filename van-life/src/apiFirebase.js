@@ -68,8 +68,8 @@ export async function getUserProfile(uid) {
   }
 }
 
-export async function getHostVans() {
-  const q = query(vansCollectionRef, where("hostId", "==", "123"));
+export async function getHostVans(hostId) {
+  const q = query(vansCollectionRef, where("hostId", "==", hostId));
   const snapshot = await getDocs(q);
   const vans = snapshot.docs.map((doc) => ({
     ...doc.data(),

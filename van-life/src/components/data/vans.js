@@ -1,4 +1,4 @@
-const vansData = [
+/* const vansData = [
   {
     id: "1",
     name: "Modest Explorer",
@@ -73,3 +73,5 @@ const vansData = [
     name: "Anuska",
   },
 ];
+
+*/
