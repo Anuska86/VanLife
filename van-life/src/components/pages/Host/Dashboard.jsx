@@ -2,7 +2,7 @@ import React from "react";
 import "../../pages/styles/Dashboard.css";
 import { Link } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
-import { getHostVans } from "../../../apiFirebase";
+import { getHostVans, getVans } from "../../../apiFirebase";
 import { UserContext } from "../../users/UserContext";
 import { signOut } from "firebase/auth";
 //import { getHostVans } from "../../../api";
@@ -12,27 +12,50 @@ export default function Dashboard() {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
-  const { user } = React.useContext(UserContext);
+  const { user, userLoading } = React.useContext(UserContext);
 
   React.useEffect(() => {
+    console.log("userLoading:", userLoading, "user:", user);
+    if (userLoading) return;
+    if (!user || !user.uid || !user.role) {
+      console.log("User not ready for fetching vans:", user);
+      return;
+    }
     const fetchVans = async () => {
-      if (!user?.uid) return;
       setLoading(true);
-
       try {
-        const data = await getHostVans(user.uid);
-        console.log("Fetched vans:", data);
-
-        setVans(data);
+        console.log("FETCH: user.role =", user.role, "| user.uid =", user.uid);
+        if (user.role === "admin") {
+          const data = await getVans();
+          setVans(data);
+        } else if (user.role === "host") {
+          const data = await getHostVans(user.uid);
+          setVans(data);
+        } else {
+          console.log("Unknown user.role, not fetching vans:", user.role);
+          setVans([]);
+        }
       } catch (error) {
-        console.error("Error fetching vans:", error);
         setError(error);
       } finally {
         setLoading(false);
       }
     };
     fetchVans();
-  }, [user]);
+  }, [user, userLoading]);
+
+  if (userLoading)
+    return (
+      <h2 style={{ color: "brown" }} aria-live="polite">
+        Loading user...
+      </h2>
+    );
+  if (error)
+    return (
+      <h2 style={{ color: "red" }} aria-live="assertive">
+        Ups! There was an error: {error.message}
+      </h2>
+    );
 
   function renderVanElements(vans) {
     const hostVansElements = vans.map((van) => (
@@ -67,6 +90,9 @@ export default function Dashboard() {
       <section className="host-dashboard-earnings">
         <div className="info">
           <h1>Welcome!</h1>
+          <h2>
+            {user?.alias && user?.role && `Hello, ${user.alias} (${user.role})`}
+          </h2>
           <p>
             Income last <span>30 days</span>
           </p>

@@ -1,16 +1,26 @@
 import React, { useContext } from "react";
 import "../../components/pages/styles/DevLogin.css";
-import { UserContext } from "../users/UserContext"
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../users/UserContext";
 import { getUserProfile } from "../../apiFirebase";
 
 export default function DevLogin() {
   const [selectedUid, setSelectedUid] = React.useState("");
 
   const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const testUsers = [
-    { uid: "3sCum1Ef90DmG6tkx1vN", email: "host1@example.com" },
-    { uid: "3sLEFh59IZPCK11nPyp9", email: "host2@example.com" },
+    {
+      uid: "3sCum1Ef90DmG6tkx1vN",
+      email: "host1@example.com",
+      alias: "Host One",
+    },
+    {
+      uid: "3sLEFh59IZPCK11nPyp9",
+      email: "host2@example.com",
+      alias: "Host Two",
+    },
   ];
 
   const handleLogin = async () => {
@@ -20,6 +30,7 @@ export default function DevLogin() {
     const profile = await getUserProfile(user.uid);
     setUser({ uid: user.uid, email: user.email, ...profile });
     console.log(`Logged in as ${profile.alias}`);
+    navigate("/host");
   };
 
   return (

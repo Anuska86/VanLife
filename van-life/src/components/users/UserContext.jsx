@@ -6,22 +6,32 @@ export const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, setUser] = React.useState(null);
+  const [userLoading, setUserLoading] = React.useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         const profile = await getUserProfile(firebaseUser.uid);
-        setUser({ ...firebaseUser, ...profile });
-        console.log("This is the profile:", profile);
+        setUser({
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          ...profile,
+        });
+        console.log("This is the merged user:", {
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          ...profile,
+        });
       } else {
         setUser(null);
       }
+      setUserLoading(false);
     });
     return unsubscribe;
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, userLoading }}>
       {children}
     </UserContext.Provider>
   );

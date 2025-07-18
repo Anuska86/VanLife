@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/HostVans.css";
 import { Link, NavLink } from "react-router-dom";
-import { getHostVans } from "../../../apiFirebase";
+import { getHostVans, getVans } from "../../../apiFirebase";
+import { UserContext } from "../../users/UserContext";
 //import { getHostVans } from "../../../api";
 
 export default function HostVans() {
@@ -9,11 +10,23 @@ export default function HostVans() {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
+  const { user, userLoading } = React.useContext(UserContext);
+
   React.useEffect(() => {
+    if (userLoading) return;
+    if (!user || !user.uid || !user.role) return;
+
     async function loadVans() {
       setLoading(true);
       try {
-        const data = await getHostVans();
+        let data;
+        if (user.role === "admin") {
+          data = await getVans();
+        } else if (user.role === "host") {
+          data = await getHostVans(user.uid);
+        } else {
+          data = [];
+        }
         setVans(data);
       } catch (error) {
         setError(error);
@@ -22,7 +35,7 @@ export default function HostVans() {
       }
     }
     loadVans();
-  }, []);
+  }, [user, userLoading]);
 
   const HostVansElements = vans.map((van) => (
     <Link to={van.id} key={van.id} className="host-van-link-wrapper">

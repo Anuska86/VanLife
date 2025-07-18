@@ -69,6 +69,9 @@ export async function getUserProfile(uid) {
 }
 
 export async function getHostVans(hostId) {
+  if (!hostId) {
+    throw new Error("getHostVans: hostId is undefined");
+  }
   const q = query(vansCollectionRef, where("hostId", "==", hostId));
   const snapshot = await getDocs(q);
   const vans = snapshot.docs.map((doc) => ({
