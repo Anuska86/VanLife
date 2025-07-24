@@ -65,11 +65,7 @@ export default function HostVans() {
     <section className="host-vans-section">
       <h1 className="host-vans-title">Your Vans</h1>
       <div className="host-vans-list">
-        {vans.length > 0 ? (
-          <section>{HostVansElements}</section>
-        ) : (
-          <h2>Loading...</h2>
-        )}
+        {vans.length > 0 ? HostVansElements : <h2>Loading...</h2>}
       </div>
     </section>
   );

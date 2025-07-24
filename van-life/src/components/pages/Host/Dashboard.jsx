@@ -71,11 +71,7 @@ export default function Dashboard() {
       </div>
     ));
 
-    return (
-      <div className="host-vans-list">
-        <section>{hostVansElements}</section>
-      </div>
-    );
+    return <div className="host-vans-list">{hostVansElements}</div>;
   }
 
   if (error)
