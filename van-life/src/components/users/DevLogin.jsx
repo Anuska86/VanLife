@@ -2,26 +2,15 @@ import React, { useContext } from "react";
 import "../../components/pages/styles/DevLogin.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../users/UserContext";
-import { getUserProfile } from "../../apiFirebase";
+import { getUserProfile, getHostsData } from "../../apiFirebase";
 
 export default function DevLogin() {
   const [selectedUid, setSelectedUid] = React.useState("");
+  const [testUsers, setTestUsers] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
-
-  const testUsers = [
-    {
-      uid: "3sCum1Ef90DmG6tkx1vN",
-      email: "host1@example.com",
-      alias: "Host One",
-    },
-    {
-      uid: "3sLEFh59IZPCK11nPyp9",
-      email: "host2@example.com",
-      alias: "Host Two",
-    },
-  ];
 
   const handleLogin = async () => {
     const user = testUsers.find((u) => u.uid === selectedUid);
@@ -32,6 +21,22 @@ export default function DevLogin() {
     console.log(`Logged in as ${profile.alias}`);
     navigate("/host");
   };
+
+  React.useEffect(() => {
+    async function fetchTestUsers() {
+      const hosts = await getHostsData();
+      setTestUsers(hosts);
+      setLoading(false);
+    }
+    fetchTestUsers();
+  }, []);
+
+  if (loading)
+    return (
+      <h2 style={{ color: "brown" }} aria-live="polite">
+        Loading...
+      </h2>
+    );
 
   return (
     <div className="dev-login-container">

@@ -55,7 +55,7 @@ export async function getHostsData() {
   const usersRef = collection(db, "users");
   const q = query(usersRef, where("role", "==", "host"));
   const snapshot = await getDocs(q);
-  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  return snapshot.docs.map((doc) => ({ uid: doc.id, ...doc.data() }));
 }
 
 export async function getUserProfile(uid) {

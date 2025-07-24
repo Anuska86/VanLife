@@ -28,7 +28,12 @@ export default function AdminDashboard() {
     fetchHostsAndVans();
   }, []);
 
-  if (loading) return <p>Loading hosts...</p>;
+  if (loading)
+    return (
+      <h2 style={{ color: "brown" }} aria-live="polite">
+        Loading...
+      </h2>
+    );
   if (error) return <p style={{ color: "red" }}>Error: {error.message}</p>;
 
   return (

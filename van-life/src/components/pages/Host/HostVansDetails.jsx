@@ -4,9 +4,6 @@ import { useParams, Link, Outlet } from "react-router-dom";
 import HostDetailsNav from "./HostDetailsNav";
 import { getVan } from "../../../apiFirebase";
 
-//import { getVan } from "../../../api";
-//import { getHostVans } from "../../../api";
-
 export default function HostVansDetails() {
   const [chosenVan, setChosenVan] = React.useState(null);
   const [error, setError] = React.useState(null);

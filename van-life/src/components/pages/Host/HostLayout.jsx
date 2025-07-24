@@ -9,17 +9,6 @@ import { auth } from "../../../apiFirebase";
 export default function HostLayout() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  /*
-
-  React.useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("HostLayout auth state:", currentUser);
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
-
-*/
 
   function handleLogout() {
     signOut(auth).then(() => {

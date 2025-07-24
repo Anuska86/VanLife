@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
 import { getHostVans, getVans } from "../../../apiFirebase";
 import { UserContext } from "../../users/UserContext";
-import { signOut } from "firebase/auth";
-//import { getHostVans } from "../../../api";
+
 
 export default function Dashboard() {
   const [vans, setVans] = React.useState([]);
