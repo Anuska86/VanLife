@@ -4,7 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import { getHostVans, getVans } from "../../../apiFirebase";
 import { UserContext } from "../../users/UserContext";
 
-
 export default function HostVans() {
   const [vans, setVans] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -14,17 +13,30 @@ export default function HostVans() {
 
   React.useEffect(() => {
     if (userLoading) return;
-    if (!user || !user.uid || !user.role) return;
+    if (!user || typeof user.uid !== "string" || !user.role) {
+      console.warn("HostVans: user not ready", user);
+      return;
+    }
 
     async function loadVans() {
       setLoading(true);
       try {
         let data;
+        console.log("HostVans: role =", user.role, "| uid =", user.uid);
+
         if (user.role === "admin") {
           data = await getVans();
         } else if (user.role === "host") {
+          if (!user.uid) {
+            console.error("HostVans: hostId is undefined");
+            setVans([]);
+            return;
+          }
+
           data = await getHostVans(user.uid);
         } else {
+          console.warn("HostVans: unknown role", user.role);
+
           data = [];
         }
         setVans(data);

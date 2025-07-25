@@ -5,7 +5,6 @@ import { BsStarFill } from "react-icons/bs";
 import { getHostVans, getVans } from "../../../apiFirebase";
 import { UserContext } from "../../users/UserContext";
 
-
 export default function Dashboard() {
   const [vans, setVans] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -28,6 +27,12 @@ export default function Dashboard() {
           const data = await getVans();
           setVans(data);
         } else if (user.role === "host") {
+          if (!user.uid) {
+            console.error("Host user missing UID:", user);
+            setVans([]);
+            return;
+          }
+          console.log("Calling getHostVans with", user.uid);
           const data = await getHostVans(user.uid);
           setVans(data);
         } else {

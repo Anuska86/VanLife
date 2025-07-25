@@ -118,7 +118,7 @@ export async function registerUser(email, password, alias, role = "host") {
     await setDoc(doc(db, "users", user.uid), {
       email: user.email,
       role: role,
-      alias: user.alias, // CUSTOM ID, the id of the firebase is user.uid
+      alias: alias, // CUSTOM ID, the id of the firebase is user.uid
       status: "active",
     });
 

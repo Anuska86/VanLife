@@ -16,7 +16,7 @@ export default function AdminDashboard() {
         setHosts(hostsData);
         const vansData = {};
         for (const host of hostsData) {
-          vansData[host.id] = await getVansByHostId(host.id);
+          vansData[host.uid] = await getVansByHostId(host.uid);
         }
         setVansByHost(vansData);
       } catch (error) {
@@ -51,7 +51,7 @@ export default function AdminDashboard() {
         <div className="admin-dasboard-host-list">
           <div className="host-card-list">
             {hosts.map((host) => (
-              <div key={host.id} className="host-card">
+              <div key={host.uid} className="host-card">
                 <h3>{host.alias || host.email}</h3>
                 <p>{host.email}</p>
                 <p>
@@ -62,9 +62,9 @@ export default function AdminDashboard() {
                 </p>
                 <div className="host-vans">
                   <h4>Vans:</h4>
-                  {vansByHost[host.id]?.length > 0 ? (
+                  {vansByHost[host.uid]?.length > 0 ? (
                     <ul>
-                      {vansByHost[host.id].map((van) => (
+                      {vansByHost[host.uid].map((van) => (
                         <li key={van.id}>
                           🚐 <strong>{van.name}</strong> — ${van.price}
                         </li>

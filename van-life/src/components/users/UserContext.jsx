@@ -12,21 +12,31 @@ export function UserProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         const profile = await getUserProfile(firebaseUser.uid);
-        setUser({
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          ...profile,
-        });
-        console.log("This is the merged user:", {
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          ...profile,
-        });
+        if (profile) {
+          setUser({
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            ...profile,
+          });
+          console.log("This is the merged user:", {
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            ...profile,
+          });
+        } else {
+          console.warn("No profile found for user:", firebaseUser.uid);
+          setUser({
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            role: "guest",
+          });
+        }
       } else {
         setUser(null);
       }
       setUserLoading(false);
     });
+
     return unsubscribe;
   }, []);
 
