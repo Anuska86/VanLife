@@ -43,7 +43,7 @@ export default function Vans() {
         to={van.id}
         state={{ search: `?${searchParams.toString()}`, type: typeFilter }}
       >
-        <img src={van.imageUrl} alt={van.name} />
+        <img src={van.imageUrl} alt={van.name} width="500" height="500" />
         <div className="van-info">
           <h3>{van.name}</h3>
           <p>
