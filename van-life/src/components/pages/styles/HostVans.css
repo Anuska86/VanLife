@@ -40,7 +40,7 @@
 }
 
 .host-van-single > img {
-  height: 70px;
+  aspect-ratio: 10 / 7;
   width: 100px;
   object-fit: cover;
   border-radius: 5px;
