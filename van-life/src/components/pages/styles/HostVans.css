@@ -10,6 +10,7 @@
   gap: 2rem;
   margin-top: 2rem;
   padding: 0;
+  justify-content: center;
 }
 
 .host-vans-title {
