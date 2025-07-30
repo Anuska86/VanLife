@@ -34,6 +34,10 @@
   color: #4b352a;
 }
 
+.transactions {
+  min-height: 500px;
+}
+
 .host-income .transaction {
   display: flex;
   justify-content: space-between;
@@ -63,4 +67,10 @@
 .transaction-id {
   font-size: 14px;
   color: #4b352a;
+}
+
+/* GRAPH*/
+
+.income-graph {
+  min-height: 300px;
 }
