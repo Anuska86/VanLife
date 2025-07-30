@@ -1,16 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Scottland from "..//../images/Scottland.png";
+import ScottlandWEBP from "..//../images/ScottlandWEBP.webp";
 
 export default function Home() {
   return (
     <div className="home-container">
-      <img
-        src={Scottland}
-        className="scottland-image"
-        alt="Scottland"
-        aria-hidden="true"
-      />
+      <picture>
+        <source srcSet={ScottlandWEBP} type="image/webp" />
+        <img
+          src={Scottland}
+          className="scottland-image"
+          alt="Scottland"
+          aria-hidden="true"
+          width="100%"
+          height="auto"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
       <div className="scottland-overlay"></div>
       <div className="home-content">
         <h1>You got the travel plans, we got the travel vans.</h1>
