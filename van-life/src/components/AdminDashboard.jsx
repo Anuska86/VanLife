@@ -45,42 +45,45 @@ export default function AdminDashboard() {
         </p>
       </div>
       <div className="admin-dashboard-wrapper">
-        <div>
+        <div className="admin-dashboard-registered-host">
           <h2 className="admin-dashboard-title">Registered Hosts</h2>
-        </div>
-        <div className="admin-dasboard-host-list">
-          <div className="host-card-list">
-            {hosts.map((host) => (
-              <div key={host.uid} className="host-card">
-                <h3>{host.alias || host.email}</h3>
-                <p>{host.email}</p>
-                <p>
-                  <strong>Role:</strong> {host.role}
-                </p>
-                <p>
-                  <strong>Status:</strong> {host.status || "active"}
-                </p>
-                <div className="host-vans">
-                  <h4>Vans:</h4>
-                  {vansByHost[host.uid]?.length > 0 ? (
-                    <ul>
-                      {vansByHost[host.uid].map((van) => (
-                        <li key={van.id}>
-                          🚐 <strong>{van.name}</strong> — ${van.price}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>No vans</p>
-                  )}
+          <div className="admin-dasboard-host-list">
+            <div className="host-card-list">
+              {hosts.map((host) => (
+                <div key={host.uid} className="host-card">
+                  <h3>{host.alias || host.email}</h3>
+                  <p>{host.email}</p>
+                  <p>
+                    <strong>Role:</strong> {host.role}
+                  </p>
+                  <p>
+                    <strong>Status:</strong> {host.status || "active"}
+                  </p>
+                  <div className="host-vans">
+                    <h4>Vans:</h4>
+                    {vansByHost[host.uid]?.length > 0 ? (
+                      <ul>
+                        {vansByHost[host.uid].map((van) => (
+                          <li key={van.id}>
+                            🚐 <strong>{van.name}</strong> — ${van.price}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>No vans</p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="admin-dashboard-add-user">
-          <AddUserForm />
+          <h2>Form to add a new user: </h2>
+          <div className="admin-dashboard-add-new-user">
+            <AddUserForm />
+          </div>
         </div>
       </div>
     </section>
