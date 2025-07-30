@@ -64,7 +64,13 @@ export default function Dashboard() {
     const hostVansElements = vans.map((van) => (
       <div className="host-van-single" key={van.id}>
         {van.imageUrl && (
-          <img src={van.imageUrl} alt={`Photo of ${van.name || "van"}`} />
+          <img
+            src={van.imageUrl}
+            alt={`Photo of ${van.name || "van"}`}
+            width="100"
+            height="70"
+            loading="lazy"
+          />
         )}
         <div className="host-van-info">
           <h3>{van.name || "No name"}</h3>

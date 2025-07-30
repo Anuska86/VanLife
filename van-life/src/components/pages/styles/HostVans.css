@@ -31,21 +31,31 @@
   flex-direction: column;
   align-items: flex-start;
   background-color: #f0f2bd;
-  margin-bottom: 0;
   padding: 18px 24px;
   margin-bottom: 10px;
   height: 243px;
+  width: 300px;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.host-van-single:hover {
+  background-color: #e8ebb0;
+  cursor: pointer;
 }
 
 .host-van-single > img {
-  aspect-ratio: 10 / 7;
   width: 100px;
+  aspect-ratio: 10 / 7;
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 1rem;
-  margin-right: 0;
+  transition: transform 0.2s ease-in-out;
+
+  .host-van-single > img:hover {
+    transform: scale(1.05);
+  }
 }
 
 .host-van-info h3 {
