@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Reviews.css";
-import { BsStarFill } from "react-icons/bs";
+import StarIcon from "../../StarIcon";
 import { getReviews } from "../../../apiFirebase";
 import {
   BarChart,
@@ -73,7 +73,7 @@ export default function Reviews() {
         <div key={review.id}>
           <div className="review">
             {[...Array(review.rating)].map((_, i) => (
-              <BsStarFill className="review-star" key={i} />
+              <StarIcon className="review-star" key={i} />
             ))}
             <div className="info">
               <p className="name">{review.name}</p>

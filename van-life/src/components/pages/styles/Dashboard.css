@@ -50,9 +50,11 @@
 }
 
 .star {
-  color: rgb(243, 196, 94);
-  margin-right: 0.3rem;
-  margin-left: 0.3rem;
+  color: #ff8c38;
+  margin-right: 4px;
+  margin-left: 4px;
+  width: 1em;
+  height: 1em;
 }
 
 .host-dashboard-reviews p {
