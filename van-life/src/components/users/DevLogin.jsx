@@ -40,7 +40,7 @@ export default function DevLogin() {
 
   return (
     <div className="dev-login-container">
-      <h2>🧪 Dev Login</h2>
+      <h2>Dev Login</h2>
       <select
         value={selectedUid}
         onChange={(e) => setSelectedUid(e.target.value)}
