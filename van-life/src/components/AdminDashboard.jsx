@@ -46,7 +46,7 @@ export default function AdminDashboard() {
       </div>
       <div className="admin-dashboard-wrapper">
         <div className="admin-dashboard-registered-host">
-          <h2 className="admin-dashboard-title">Registered Hosts</h2>
+          <h2 className="admin-dashboard-registered-title">Registered Hosts</h2>
           <div className="admin-dasboard-host-list">
             <div className="host-card-list">
               {hosts.map((host) => (

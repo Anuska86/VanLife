@@ -56,8 +56,9 @@ p {
   margin-bottom: 0.5rem;
 }
 .admin-dasboard-host-list {
-  align-self: flex-start;
-  min-width: 250px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   text-align: left;
   color: #4b352a;
 }
@@ -68,10 +69,12 @@ p {
   justify-content: center;
   gap: 1.5rem;
   margin-top: 1rem;
+  max-width: 800px;
 }
 
 .host-card {
   background-color: #fff8dc;
+  width: 250px;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 1rem;
