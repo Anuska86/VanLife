@@ -55,7 +55,7 @@ export default function App() {
             </Route>
           </Route>
           <Route element={<AuthRequired requireAdmin={true} />}>
-            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="admin" element={<AdminDashboard />} />
           </Route>
           <Route path="/dev-login" element={<DevLogin />}></Route>
 

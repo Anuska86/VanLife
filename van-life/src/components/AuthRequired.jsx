@@ -24,6 +24,11 @@ export default function AuthRequired({
             const fetchedUser = await getUserRoleByEmail(currentUser.email);
             if (isMounted) {
               setUser({ ...currentUser, ...fetchedUser });
+              console.log("User context set:", {
+                ...currentUser,
+                ...fetchedUser,
+              });
+
               setRole(fetchedUser?.role);
               setLoading(false);
             }
@@ -78,7 +83,7 @@ export default function AuthRequired({
     );
   }
 
-  if (requireHost && role !== "host") {
+  if (requireHost && role !== "host" && role !== "admin") {
     return (
       <Navigate
         to="/"

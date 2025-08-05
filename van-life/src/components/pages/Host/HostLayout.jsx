@@ -15,6 +15,14 @@ export default function HostLayout() {
       navigate("/login");
     });
   }
+  if (!user) {
+    return (
+      <h2 style={{ color: "brown", textAlign: "center" }}>
+        Loading user data...
+      </h2>
+    );
+  }
+
   return (
     <div className="host-layout">
       <header className="host-header">
