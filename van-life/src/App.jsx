@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import Login from "./components/Login";
 import AdminDashboard from "./components/AdminDashboard";
 import DevLogin from "./components/users/DevLogin";
+import AdminLayout from "./components/AdminLayout";
 
 //import from pages
 import Home from "./components/pages/Home";
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="vans/:id" element={<VansDetail />} />
           <Route path="login" element={<Login />} />
 
+          {/* Host Routes */}
           <Route element={<AuthRequired requireHost={true} />}>
             <Route path="host" element={<HostLayout />}>
               <Route index element={<Dashboard />} />
@@ -54,10 +56,14 @@ export default function App() {
               </Route>
             </Route>
           </Route>
+
+          {/* Admin Route — now inside Layout */}
           <Route element={<AuthRequired requireAdmin={true} />}>
-            <Route path="admin" element={<AdminDashboard />} />
+            <Route path="admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="dev-login" element={<DevLogin />} />
+            </Route>
           </Route>
-          <Route path="/dev-login" element={<DevLogin />}></Route>
 
           <Route path="*" element={<NotFound />} />
         </Route>
