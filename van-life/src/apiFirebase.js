@@ -98,7 +98,11 @@ export async function getUserRoleByEmail(email) {
   if (!snapshot.empty) {
     const userDoc = snapshot.docs[0];
     const data = userDoc.data();
-    return data.role || null;
+    console.log("getUserRoleByEmail: found user =", data);
+    return {
+      uid: userDoc.id,
+      ...data,
+    };
   } else {
     return null;
   }

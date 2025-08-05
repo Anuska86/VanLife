@@ -50,7 +50,7 @@ export default function Header() {
           Vans
         </NavLink>
 
-        <Link to="login" className="login-link">
+        <Link to="/login" className="login-link">
           <FaUserLock size={30} />
         </Link>
       </nav>

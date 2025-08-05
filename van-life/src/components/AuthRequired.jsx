@@ -4,7 +4,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../apiFirebase";
 import { getUserRoleByEmail } from "../apiFirebase";
 
-export default function AuthRequired({ requireAdmin = false }) {
+export default function AuthRequired({
+  requireAdmin = false,
+  requireHost = false,
+}) {
   const [user, setUser] = React.useState(null);
   const [role, setRole] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
@@ -15,20 +18,35 @@ export default function AuthRequired({ requireAdmin = false }) {
     let isMounted = true;
 
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser && isMounted) {
-        const role = await getUserRoleByEmail(currentUser.email);
-        if (isMounted) {
-          setUser(currentUser);
-          setRole(role);
+      if (isMounted) {
+        if (currentUser) {
+          try {
+            const fetchedUser = await getUserRoleByEmail(currentUser.email);
+            if (isMounted) {
+              setUser({ ...currentUser, ...fetchedUser });
+              setRole(fetchedUser?.role);
+              setLoading(false);
+            }
+          } catch (error) {
+            console.error("Error fetching role:", error);
+            if (isMounted) setLoading(false);
+          }
+        } else {
+          if (isMounted) setLoading(false);
         }
       }
-      if (isMounted) setLoading(false);
     });
+
     return () => {
       isMounted = false;
       unsubscribe();
     };
   }, []);
+
+  React.useEffect(() => {
+    console.log("AuthRequired: user =", user);
+    console.log("AuthRequired: role =", role);
+  }, [user, role]);
 
   if (loading)
     return (
@@ -53,6 +71,19 @@ export default function AuthRequired({ requireAdmin = false }) {
         to="/"
         state={{
           message: "Access denied: Admins only",
+          from: location.pathname,
+        }}
+        replace
+      />
+    );
+  }
+
+  if (requireHost && role !== "host") {
+    return (
+      <Navigate
+        to="/"
+        state={{
+          message: "Access denied: Hosts only",
           from: location.pathname,
         }}
         replace

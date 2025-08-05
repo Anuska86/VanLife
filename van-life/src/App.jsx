@@ -41,7 +41,7 @@ export default function App() {
           <Route path="vans/:id" element={<VansDetail />} />
           <Route path="login" element={<Login />} />
 
-          <Route element={<AuthRequired />}>
+          <Route element={<AuthRequired requireHost={true} />}>
             <Route path="host" element={<HostLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="income" element={<Income />} />

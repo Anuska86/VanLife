@@ -6,7 +6,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { auth, registerUser } from "../apiFirebase";
+import { auth, registerUser, getUserRoleByEmail } from "../apiFirebase";
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = React.useState({
@@ -23,36 +23,55 @@ export default function Login() {
   const from = location.state?.from || "/host";
 
   React.useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("Firebase connection test:", user ? "Connected" : "No user");
-
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        navigate("/host");
+        try {
+          const userDoc = await getUserRoleByEmail(user.email);
+          const role = userDoc?.role;
+
+          if (role === "admin") {
+            navigate("/admin");
+          } else if (role === "host") {
+            navigate("/host");
+          } else {
+            navigate("/", {
+              state: { message: "Unknown role. Access denied." },
+            });
+          }
+        } catch (err) {
+          console.error("Error fetching user role:", err);
+          navigate("/", { state: { message: "Error determining user role." } });
+        }
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [navigate]);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("Login form submitted");
     setLoading(true);
     setError(null);
-    try {
-      console.log("Attempting Firebase login...");
 
+    try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         loginFormData.email,
         loginFormData.password
       );
-      console.log("Login success:", userCredential.user);
 
-      navigate(from, { replace: true });
+      const user = userCredential.user;
+      const userDoc = await getUserRoleByEmail(user.email);
+      const role = userDoc?.role;
+
+      if (role === "admin") {
+        navigate("/admin");
+      } else if (role === "host") {
+        navigate("/host");
+      } else {
+        navigate("/", { state: { message: "Unknown role. Access denied." } });
+      }
     } catch (error) {
-      console.error("Login failed:", error);
-
       if (error.code === "auth/network-request-failed") {
         setError({ message: "Network error: Please check your connection." });
       } else if (error.code === "auth/wrong-password") {
