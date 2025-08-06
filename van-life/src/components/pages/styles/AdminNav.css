@@ -16,11 +16,11 @@
   gap: 1rem;
   padding: 0 2rem;
   margin: 10px 0;
-  flex-wrap: wrap;
-  width: 60%;
+  flex-wrap: nowrap;
   box-sizing: border-box;
   background-color: #bd9a65;
   border-radius: 4px;
+  overflow-x: auto;
 }
 
 .admin-nav a {
