@@ -1,6 +1,9 @@
 .host-nav {
   display: flex;
   margin-bottom: 10px;
+  background-color: #bd9a65;
+  border-radius: 4px;
+  width: 50%;
 }
 
 .host-nav a {

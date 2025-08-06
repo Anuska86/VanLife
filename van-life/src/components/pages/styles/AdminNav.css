@@ -1,6 +1,26 @@
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-nav-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 .admin-nav {
   display: flex;
-  margin-bottom: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+  margin: 10px 0;
+  flex-wrap: wrap;
+  width: 88%;
+  box-sizing: border-box;
+  background-color: #bd9a65;
+  border-radius: 4px;
 }
 
 .admin-nav a {
@@ -14,12 +34,6 @@
   color: #161616;
   text-decoration: underline;
   font-weight: 600;
-}
-
-.admin-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 }
 
 .admin-user {

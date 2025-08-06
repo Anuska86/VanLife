@@ -34,7 +34,6 @@ export default function AdminNav({ onLogout }) {
       >
         Vans
       </NavLink>
-
       <NavLink
         to="reviews"
         style={({ isActive }) => (isActive ? activeStyle : null)}
@@ -49,23 +48,21 @@ export default function AdminNav({ onLogout }) {
           Admin Dashboard
         </NavLink>
       )}
-      <div className="admin-actions">
-        {user ? (
-          <>
-            <button className="button-logout" onClick={onLogout}>
-              Log out
-            </button>
-            <span className="admin-user">{user.alias}</span>
-          </>
-        ) : (
-          <Link to="/login">Log in</Link>
-        )}
-        {process.env.NODE_ENV === "development" && (
-          <Link to="dev-login" className="dev-login-link">
-            Dev Login
-          </Link>
-        )}
-      </div>
+      {user ? (
+        <>
+          <button className="button-logout" onClick={onLogout}>
+            Log out
+          </button>
+          <span className="admin-user">{user.alias}</span>
+        </>
+      ) : (
+        <Link to="/login">Log in</Link>
+      )}
+      {process.env.NODE_ENV === "development" && (
+        <Link to="dev-login" className="dev-login-link">
+          Dev Login
+        </Link>
+      )}
     </nav>
   );
 }

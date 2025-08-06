@@ -63,6 +63,9 @@ export default function App() {
           <Route element={<AuthRequired requireAdmin={true} />}>
             <Route path="admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
+              <Route path="income" element={<Income />} />
+              <Route path="vans" element={<HostVans />} />
+              <Route path="reviews" element={<Reviews />} />
               <Route path="dev-login" element={<DevLogin />} />
             </Route>
           </Route>

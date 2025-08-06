@@ -5,12 +5,13 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 export default function AdminLayout() {
   return (
-    <>
-      <AdminNav />
-
+    <div className="admin-layout">
+      <div className="admin-nav-wrapper">
+        <AdminNav />
+      </div>
       <main>
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }
