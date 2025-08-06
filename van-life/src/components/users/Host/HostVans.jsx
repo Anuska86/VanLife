@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/HostVans.css";
+import "../../../../src/components/pages/styles/HostVans.css";
 import { Link, NavLink } from "react-router-dom";
 import { getHostVans, getVans } from "../../../apiFirebase";
 import { UserContext } from "../../users/UserContext";

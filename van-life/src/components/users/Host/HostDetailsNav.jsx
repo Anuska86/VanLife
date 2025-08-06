@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import "../styles/HostDetailsNav.css";
+import "../../../../src/components/pages/styles/HostDetailsNav.css";
 
 export default function HostDetailsNav() {
   const activeStyle = {

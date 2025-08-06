@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../users/UserContext";
-import "../styles/HostLayout.css";
+import "../../../../src/components/pages/styles/HostLayout.css";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import HostNav from "./HostNav";
 import { signOut, onAuthStateChanged } from "firebase/auth";

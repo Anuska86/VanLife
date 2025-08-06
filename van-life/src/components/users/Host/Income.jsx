@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Income.css";
+import "../../../../src/components/pages/styles/Income.css";
 import { getTransactions } from "../../../apiFirebase";
 import {
   LineChart,

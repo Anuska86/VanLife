@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Reviews.css";
+import "../../../../src/components/pages/styles/Reviews.css";
 import StarIcon from "../../StarIcon";
 import { getReviews } from "../../../apiFirebase";
 import {

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { UserContext } from "../../users/UserContext";
+import { UserContext } from "../UserContext";
 import { Link, NavLink } from "react-router-dom";
-import "../styles/HostNav.css";
+import "../../../../src/components/pages/styles/HostNav.css";
 
 export default function HostNav({ onLogout }) {
   const { user } = useContext(UserContext);

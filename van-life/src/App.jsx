@@ -6,9 +6,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 //import from components
 import Layout from "./components/Layout";
 import Login from "./components/Login";
-import AdminDashboard from "./components/AdminDashboard";
 import DevLogin from "./components/users/DevLogin";
-import AdminLayout from "./components/AdminLayout";
 
 //import from pages
 import Home from "./components/pages/Home";
@@ -20,16 +18,20 @@ import AuthRequired from "./components/AuthRequired";
 import Vans from "./components/pages/Vans/Vans";
 import VansDetail from "./components/pages/Vans/VanDetail";
 
+//import from Admin
+import AdminDashboard from "./components/users/Admin/AdminDashboard";
+import AdminLayout from "./components/users/Admin/AdminLayout";
+
 //import from Host
-import Dashboard from "./components/pages/Host/Dashboard";
-import Income from "./components/pages/Host/Income";
-import Reviews from "./components/pages/Host/Reviews";
-import HostLayout from "./components/pages/Host/HostLayout";
-import HostVans from "./components/pages/Host/HostVans";
-import HostVansDetails from "./components/pages/Host/HostVansDetails";
-import HostVanInfo from "./components/pages/Host/HostVanInfo";
-import HostVanPhotos from "./components/pages/Host/HostVanPhotos";
-import HostVanPricing from "./components/pages/Host/HostVanPricing";
+import Dashboard from "./components/users/Host/Dashboard";
+import Income from "./components/users/Host/Income";
+import Reviews from "./components/users/Host/Reviews";
+import HostLayout from "./components/users/Host/HostLayout";
+import HostVans from "./components/users/Host/HostVans";
+import HostVansDetails from "./components/users/Host/HostVansDetails";
+import HostVanInfo from "./components/users/Host/HostVanInfo";
+import HostVanPhotos from "./components/users/Host/HostVanPhotos";
+import HostVanPricing from "./components/users/Host/HostVanPricing";
 
 export default function App() {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
-import "../components/pages/styles/AdminDashboard.css";
-import { getHostsData, getVansByHostId } from "../apiFirebase";
-import AddUserForm from "./users/AddUser";
+import "../../pages/styles/AdminDashboard.css";
+import { getHostsData, getVansByHostId } from "../../../apiFirebase";
+import AddUserForm from "../AddUser";
 
 export default function AdminDashboard() {
   const [hosts, setHosts] = React.useState([]);
