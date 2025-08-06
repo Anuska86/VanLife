@@ -61,7 +61,7 @@ export default function AdminNav({ onLogout }) {
           <Link to="/login">Log in</Link>
         )}
         {process.env.NODE_ENV === "development" && (
-          <Link to="/dev-login" className="dev-login-link">
+          <Link to="dev-login" className="dev-login-link">
             Dev Login
           </Link>
         )}
