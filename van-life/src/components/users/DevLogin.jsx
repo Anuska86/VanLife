@@ -17,8 +17,12 @@ export default function DevLogin() {
     if (!user) return;
 
     const profile = await getUserProfile(user.uid);
-    setUser({ uid: user.uid, email: user.email, ...profile });
+    const fullUser = { uid: user.uid, email: user.email, ...profile };
+
+    setUser(fullUser);
+    localStorage.setItem("devUser", JSON.stringify(fullUser));
     console.log(`Logged in as ${profile.alias}`);
+
     navigate("/host");
   };
 
